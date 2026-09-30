@@ -1,0 +1,160 @@
+# EV / EBITDA
+
+EV/EBITDA compares the value of the whole business - equity plus net debt - with its operating earnings before interest, taxes, depreciation and amortization, giving a valuation multiple that does not depend on how the company is financed.
+
+```objectives
+time: 40 min
+outcomes:
+  - Build enterprise value from market capitalization, debt, cash and other claims
+  - Calculate EV/EBITDA and explain why it is capital-structure neutral
+  - Benchmark EV/EBITDA by sector and adjust it for capital intensity
+  - Recognize the ways EBITDA can overstate cash earnings
+prerequisites:
+  - "[P/E vs PEG](01-PE-vs-PEG.mdx)"
+  - "[Balance Sheet](../../04-Accounting-Foundations/Notes/02-Balance-Sheet.mdx)"
+```
+
+## Why It Matters
+
+<div class="audience-beginner" markdown="1">
+
+Buying a house with a mortgage means you take on the loan too. Buying a whole company is the same: you get its cash, but you also take on its debts. Enterprise value (EV) is the true price of the whole business, including those debts. EV/EBITDA then asks how many years of operating profit that full price represents.
+
+</div>
+
+<div class="audience-analyst" markdown="1">
+
+P/E mixes operating performance with financing choices: two identical businesses with different leverage show different P/Es. EV/EBITDA pairs a numerator that includes all capital providers with a denominator available to all of them, so it is the standard multiple for comparing companies with different capital structures and for M&A. Its blind spot is capital intensity: EBITDA ignores the capex required to sustain it.
+
+</div>
+
+## Formulas
+
+$$
+\text{EV} = \text{Market cap} + \text{Total debt} + \text{Lease liabilities} + \text{Preferred stock} + \text{Minority interest} - \text{Cash and equivalents}
+$$
+
+$$
+\text{EBITDA} = \text{EBIT} + \text{Depreciation} + \text{Amortization}
+$$
+
+$$
+\text{EV/EBITDA} = \frac{\text{EV}}{\text{EBITDA}}
+$$
+
+**Consistency rule:** whatever claims are in the numerator must match the earnings in the denominator. If EV includes lease liabilities, use EBITDA before lease costs (post-IFRS 16 / Ind AS 116 EBITDA already excludes them). If EV includes minority interest, use consolidated EBITDA.
+
+### Related Multiples
+
+| Multiple | Use when |
+|---|---|
+| EV/EBIT | Capital-intensive businesses - it charges depreciation as a proxy for maintenance capex |
+| EV/Sales | Loss-making or early-stage companies |
+| EV/(EBITDA - Capex) | Telecoms, industrials - approximates operating cash flow |
+| EV/Invested Capital vs ROIC | Links value to returns on capital |
+
+## Worked Example
+
+| Item | Company X | Company Y |
+|---|---|---|
+| Share price × shares = Market cap | 8,000 | 5,000 |
+| Debt | 500 | 4,000 |
+| Cash | 1,000 | 500 |
+| **EV** | **7,500** | **8,500** |
+| EBITDA | 1,000 | 1,000 |
+| Interest expense | 30 | 280 |
+| **EV/EBITDA** | **7.5x** | **8.5x** |
+
+Both earn the same EBITDA. Y has a lower market cap and might look cheaper on P/E, but once its 3,500 of net debt is included it is the more expensive business.
+
+## Sector Benchmarks
+
+Rough through-the-cycle ranges. Always check the capex burden before comparing across sectors.
+
+| Sector | Typical EV/EBITDA | Capex intensity | Notes |
+|---|---|---|---|
+| Software / internet | 15-30x+ | Low | Stock comp is added back in "adjusted" EBITDA - add it back as a cost |
+| Consumer staples | 12-20x (US); 30-50x (India) | Low to moderate | |
+| Healthcare / pharma | 10-16x | Moderate | R&D is expensed, which helps comparability |
+| Industrials | 8-14x | Moderate | Use mid-cycle EBITDA |
+| Telecom | 5-8x | Very high | EV/(EBITDA - Capex) is more honest |
+| Energy / metals & mining | 4-7x | High | Low multiples at cycle peaks |
+| Utilities | 9-12x | Very high | Regulated returns |
+| Banks and insurers | Not meaningful | - | Debt is operating, not financing |
+
+**Relating it to ROIC.** In steady state, a fair EV/NOPAT is $$\frac{1 - g/\text{ROIC}}{\text{WACC} - g}$$. EV/EBITDA is higher when depreciation is small relative to EBITDA, when ROIC is high and when growth is long-lasting.
+
+## Red Flags
+
+- **"Adjusted EBITDA" that adds back recurring costs** - restructuring every year, stock-based compensation, "one-time" marketing. WeWork's "community-adjusted EBITDA" is the classic example of the abuse.
+- **Missing debt-like items** in EV: leases, pension deficits, preference shares, acquisition earn-outs, factoring (supplier finance).
+- **Low EV/EBITDA with high capex** - the EBITDA never becomes free cash flow.
+- **Cash that is not really available** - trapped overseas, restricted, or needed for working capital.
+- **Using market cap instead of EV** in a comparison of companies with very different leverage.
+
+## How It Interacts With Other Metrics
+
+| Metric | Interaction |
+|---|---|
+| [Leverage ratios](05-Leverage-Ratios.mdx) | Net debt / EBITDA uses the same denominator; a stock can look cheap on EV/EBITDA while being dangerously levered. |
+| [FCF yield](04-FCF-Yield.mdx) | EV/EBITDA says nothing about capex; always pair it with FCF conversion. |
+| [ROIC vs WACC](03-ROIC-vs-WACC.mdx) | High ROIC justifies a higher EV multiple. |
+| [P/E](01-PE-vs-PEG.mdx) | For unlevered companies with little D&A, P/E and EV/EBITDA tell the same story; divergence signals leverage or capital intensity. |
+
+## Case Studies
+
+**US - telecom and cable.** US telecom and cable companies often trade at 6-8x EBITDA, which looks cheap next to the market. But network capex can consume 15-20% of revenue, and many carry net debt of 3x EBITDA or more. On EV/(EBITDA - Capex) or on FCF yield, the discount looks much smaller.
+
+**India - Bharti Airtel vs Vodafone Idea.** During the 2017-2022 tariff war, both carriers reported substantial EBITDA, but Vodafone Idea's net debt (including deferred spectrum and AGR dues owed to the government) was so large relative to EBITDA that almost all of its enterprise value belonged to creditors and the government, not shareholders. Enterprise value analysis - including government dues as debt-like claims - explained why its equity kept falling while Airtel's recovered.
+
+> Figures are approximate and for teaching.
+
+## Check Yourself
+
+```quiz
+- q: "Market cap 2,000, debt 900, cash 300, lease liabilities 100, EBITDA 450. What is EV/EBITDA?"
+  options: ["4.4x", "6.0x", "6.4x", "5.1x"]
+  answer: 2
+  explain: "EV = 2,000 + 900 + 100 - 300 = 2,700, and 2,700 / 450 = 6.0x."
+- q: "Why is EV/EBITDA called capital-structure neutral?"
+  options: ["It ignores debt entirely", "The numerator includes all capital providers and the denominator is earnings before any payments to them", "It uses book values", "It only works for unlevered firms"]
+  answer: 2
+  explain: "EV counts equity and debt holders; EBITDA is before interest, so changing the debt/equity mix does not change the multiple much."
+- q: "For which company is EV/EBITDA most likely to flatter valuation?"
+  options: ["A software firm with low capex", "A telecom operator spending 20% of revenue on capex", "A consulting firm", "A brand-licensing company"]
+  answer: 2
+  explain: "EBITDA ignores capex. A capex-heavy company converts much less EBITDA into free cash flow."
+- q: "Name three debt-like items that are often left out of a quick EV calculation."
+  answer: "Lease liabilities, pension deficits, preference shares, minority interest, deferred acquisition payments or earn-outs, supplier-finance or factoring arrangements, and (in India) government dues such as AGR or deferred spectrum payments."
+```
+
+## Exercises
+
+```exercise
+- title: Full EV bridge
+  task: |
+    From the latest annual report of one US and one Indian company, build the EV bridge: market cap, borrowings, lease liabilities, minority interest, preference capital, cash and liquid investments. Compute EV/EBITDA and EV/EBIT. Which items were hardest to find?
+- title: Capex-adjusted comparison
+  task: |
+    Company A: EV 12,000, EBITDA 1,500, capex 300. Company B: EV 9,000, EBITDA 1,500, capex 900. Which is cheaper on EV/EBITDA, and which on EV/(EBITDA - Capex)?
+  solution: |
+    EV/EBITDA: A = 8.0x, B = **6.0x** (B looks cheaper).
+    EV/(EBITDA - Capex): A = 12,000 / 1,200 = **10.0x**; B = 9,000 / 600 = 15.0x. After capex, A is cheaper.
+```
+
+## Study Notes
+
+- **EV = market cap + debt + leases + preferred + minority interest - cash.**
+- EV/EBITDA is capital-structure neutral - use it to compare companies with different leverage.
+- Match numerator claims with denominator earnings.
+- EBITDA ignores capex: pair with EV/EBIT, EV/(EBITDA - Capex) or FCF yield.
+- Distrust "adjusted" EBITDA that adds back recurring costs.
+
+## References
+
+- Koller, Goedhart & Wessels, *Valuation*, 7th ed. (McKinsey & Company, 2020) - chapter on multiples
+- Damodaran, [Enterprise Value Multiples by Sector](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/vebitda.html) (updated each January)
+- Rosenbaum & Pearl, *Investment Banking: Valuation, LBOs, M&A and IPOs*, 3rd ed. (Wiley, 2020)
+- WeWork (The We Company), Form S-1 registration statement (SEC, 2019)
+
+*Last reviewed: 2026-09*

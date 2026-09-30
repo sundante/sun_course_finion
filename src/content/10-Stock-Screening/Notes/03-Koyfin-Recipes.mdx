@@ -1,0 +1,133 @@
+# Koyfin Recipes
+
+Koyfin is a web-based market data platform whose screener lets you set custom numeric ranges on a large library of fundamental metrics - including multi-year CAGRs, ROIC and free-cash-flow measures - across US and global stocks, which makes it well suited to this course's frameworks.
+
+```objectives
+time: 40 min
+outcomes:
+  - Build the growth, dividend growth and hybrid screens with Koyfin's criteria builder
+  - Use custom ranges and multi-year metrics that dropdown screeners lack
+  - Add screen results to a watchlist with a dashboard of the eight core metrics
+prerequisites:
+  - "[Finviz Recipes](02-Finviz-Recipes.mdx) - the same three screens in simpler form"
+```
+
+## How Koyfin Works
+
+Open **Screens > New Screen**, choose a universe (for example, United States, or a global region), then **Add Criteria** by searching the metric name. Each criterion takes a custom range (for example, "greater than 10"). Results can be saved, shown in a custom column layout, and sent to a watchlist. Some metrics and the number of criteria depend on your plan.
+
+> Metric names below are descriptive. Type the key words ("revenue CAGR", "ROIC", "net debt / EBITDA") into the criteria search box and pick the matching metric and period.
+
+<div class="audience-beginner" markdown="1">
+
+Koyfin's advantage is that you can type exact numbers and choose multi-year measures like "5-year revenue growth" directly, instead of picking from fixed menus. That lets you screen much closer to the actual framework criteria.
+
+</div>
+
+<div class="audience-analyst" markdown="1">
+
+Check each metric's definition (click the info icon): whether a CAGR uses fiscal or calendar years, whether ROIC includes goodwill, and whether FCF deducts stock-based compensation. Consistency across the universe matters more than matching your own definitions exactly, but know the differences before comparing screen values with your own calculations.
+
+</div>
+
+## Recipe 1 - High-Growth Screen
+
+| Criterion | Range |
+|---|---|
+| Market cap | > 2,000 million USD |
+| Revenue growth, 3-year CAGR | > 20% |
+| Revenue growth, next fiscal year (consensus) | > 15% |
+| Gross margin (LTM) | > 55% |
+| Free cash flow margin (LTM) | > -10% |
+| Revenue growth + FCF margin (add as two criteria and sort, or compute in a custom column) | > 40 (Rule of 40) |
+| Net debt / EBITDA | < 2 (or net cash) |
+
+Sort by **EV / NTM revenue** to see which growth is cheapest.
+
+## Recipe 2 - Dividend Growth Screen
+
+| Criterion | Range |
+|---|---|
+| Market cap | > 10,000 million USD |
+| Dividend yield | > 2% |
+| Dividend per share, 5-year CAGR | > 5% |
+| Dividend payout ratio (earnings) | < 65% |
+| Free cash flow per share (LTM) | > dividend per share (or FCF payout < 60% if available) |
+| Net debt / EBITDA | < 2.5 |
+| EBIT / interest expense | > 6 |
+| Return on invested capital (5-year average) | > 10% |
+
+## Recipe 3 - Hybrid (GARP + Dividend Growth) Screen
+
+| Criterion | Range |
+|---|---|
+| Market cap | > 2,000 million USD |
+| Revenue, 5-year CAGR | 10% to 20% |
+| Diluted EPS, 5-year CAGR | > 10% |
+| Shares outstanding, 5-year change | < 0% (flat or falling) |
+| Return on invested capital (5-year average) | > 15% |
+| Gross margin, 5-year change | > -2 percentage points |
+| Dividend per share, 5-year CAGR | > 8% |
+| Dividend yield | 0.5% to 3.5% |
+| Net debt / EBITDA | < 2 |
+| PEG (NTM P/E / long-term EPS growth) | < 1.8 |
+| FCF yield (LTM) | > 2.5% |
+
+This screen tests eight of the eleven hybrid criteria directly. Check FCF conversion, FCF payout and the Chowder number by hand.
+
+## A Metric Dashboard for the Results
+
+Create a custom column layout (a "view") called **Eight Metrics** and apply it to every screen:
+
+| Column | Metric note |
+|---|---|
+| NTM P/E, PEG | [P/E vs PEG](../../05-Metric-Toolkit/Notes/01-PE-vs-PEG.mdx) |
+| EV / NTM EBITDA | [EV / EBITDA](../../05-Metric-Toolkit/Notes/02-EV-to-EBITDA.mdx) |
+| ROIC (5y avg) | [ROIC vs WACC](../../05-Metric-Toolkit/Notes/03-ROIC-vs-WACC.mdx) |
+| FCF yield | [FCF Yield](../../05-Metric-Toolkit/Notes/04-FCF-Yield.mdx) |
+| Net debt / EBITDA | [Leverage](../../05-Metric-Toolkit/Notes/05-Leverage-Ratios.mdx) |
+| Gross and EBIT margin, 5y change | [Margin Trajectory](../../05-Metric-Toolkit/Notes/06-Margin-Trajectory.mdx) |
+| Payout ratio, dividend 5y CAGR | [Payout & Coverage](../../05-Metric-Toolkit/Notes/07-Dividend-Payout-and-FCF-Coverage.mdx) |
+| Revenue and EPS 5y CAGR | [Revenue vs EPS CAGR](../../05-Metric-Toolkit/Notes/08-Revenue-vs-EPS-CAGR.mdx) |
+
+Send the survivors to a watchlist, and use Koyfin's charting to plot each company's P/E history against its own 10-year range before doing deeper research.
+
+## Global Screens
+
+Koyfin covers many non-US markets, including Indian stocks listed on NSE and BSE. For Indian companies, [Screener.in](04-Screener-in-Recipes.mdx) usually has deeper local data (promoter holding, pledges, standalone vs consolidated), but Koyfin is useful for comparing an Indian company with global peers on the same definitions.
+
+## Check Yourself
+
+```quiz
+- q: "What is the main advantage of Koyfin's criteria builder over dropdown-based screeners for this course?"
+  options: ["It is always free", "Custom numeric ranges and multi-year metrics such as 5-year CAGRs and average ROIC", "It covers only US stocks", "It gives buy recommendations"]
+  answer: 2
+  explain: "Custom ranges and multi-year measures let screens match the framework criteria much more closely."
+- q: "Why should you check a metric's definition before comparing screen values with your own calculations?"
+  answer: "Vendors define metrics differently - for example, fiscal vs calendar CAGRs, ROIC with or without goodwill, FCF before or after stock compensation - so the numbers may not match your definitions even when both are correct."
+```
+
+## Exercises
+
+```exercise
+- title: Build and compare
+  task: |
+    Build the hybrid screen in Koyfin and in Finviz. Compare the result lists. Which names appear in both? For two names that appear in only one, find which criterion caused the difference.
+- title: Global peer check
+  task: |
+    Choose one Indian company from a Screener.in result. In Koyfin, build a peer list of five global companies in the same industry and compare them on the Eight Metrics view. Is the Indian company's valuation premium or discount explained by its growth and ROIC?
+```
+
+## Study Notes
+
+- Koyfin: custom ranges, multi-year CAGRs, average ROIC, FCF measures, global coverage.
+- Use one **Eight Metrics** column view for every screen.
+- Check vendor definitions; verify key numbers from filings.
+- Pair with Screener.in for Indian-specific data.
+
+## References
+
+- Koyfin, [Help Center: Screens](https://www.koyfin.com/help/) (accessed 2026)
+- CFA Institute, *Equity Investments: Equity Valuation - Concepts and Basic Tools*, CFA Program Level I curriculum (2025)
+
+*Last reviewed: 2026-09*

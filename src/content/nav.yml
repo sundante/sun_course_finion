@@ -1,0 +1,139 @@
+# Single source of truth for navigation.
+# - Each top-level `Title: [...]` entry is a module; its slug comes from MODULE_SLUG_MAP in src/lib/content/nav.ts.
+# - `- track: Name` entries are unnumbered group labels; every module after one belongs to that track.
+# - Modules are numbered in the sidebar by their order here, so keep folder prefixes (01-, 02-, ...) in the same order.
+# - Group names matter to the home page counts (src/lib/content/stats.ts): "Concepts" pages count as notes,
+#   "Templates" pages count as research templates.
+nav:
+  - Home: index.mdx
+
+  - track: Foundations
+  - Money & Compounding:
+    - Overview: 01-Money-and-Compounding/INDEX.mdx
+    - Concepts:
+      - Compound Interest Mechanics: 01-Money-and-Compounding/Notes/01-Compound-Interest-Mechanics.mdx
+      - Reinvestment Risk: 01-Money-and-Compounding/Notes/02-Reinvestment-Risk.mdx
+      - Terminal Wealth Drag: 01-Money-and-Compounding/Notes/03-Terminal-Wealth-Drag.mdx
+      - Time Value of Money: 01-Money-and-Compounding/Notes/04-Time-Value-of-Money.mdx
+  - Asset Classes & Products:
+    - Overview: 02-Asset-Classes/INDEX.mdx
+    - Concepts:
+      - Cash Equivalents: 02-Asset-Classes/Notes/01-Cash-Equivalents.mdx
+      - Sovereign & Corporate Bonds: 02-Asset-Classes/Notes/02-Sovereign-and-Corporate-Bonds.mdx
+      - Equities: 02-Asset-Classes/Notes/03-Equities.mdx
+      - Index Funds, ETFs & Mutual Funds: 02-Asset-Classes/Notes/04-Index-Funds-ETFs-and-Mutual-Funds.mdx
+      - Alternatives - REITs & Commodities: 02-Asset-Classes/Notes/05-Alternatives-REITs-and-Commodities.mdx
+      - Asset Class Comparison: 02-Asset-Classes/Notes/06-Asset-Class-Comparison.mdx
+  - Risk & Return:
+    - Overview: 03-Risk-and-Return/INDEX.mdx
+    - Concepts:
+      - Return & Volatility: 03-Risk-and-Return/Notes/01-Return-and-Volatility.mdx
+      - Sharpe Ratio: 03-Risk-and-Return/Notes/02-Sharpe-Ratio.mdx
+      - Sortino Ratio: 03-Risk-and-Return/Notes/03-Sortino-Ratio.mdx
+      - Drawdown & Beta: 03-Risk-and-Return/Notes/04-Drawdown-and-Beta.mdx
+
+  - track: Reading the Numbers
+  - Accounting Foundations:
+    - Overview: 04-Accounting-Foundations/INDEX.mdx
+    - Concepts:
+      - Income Statement: 04-Accounting-Foundations/Notes/01-Income-Statement.mdx
+      - Balance Sheet: 04-Accounting-Foundations/Notes/02-Balance-Sheet.mdx
+      - Cash Flow Statement: 04-Accounting-Foundations/Notes/03-Cash-Flow-Statement.mdx
+      - How the Statements Link: 04-Accounting-Foundations/Notes/04-How-the-Statements-Link.mdx
+  - The Metric Toolkit:
+    - Overview: 05-Metric-Toolkit/INDEX.mdx
+    - Concepts:
+      - P/E vs PEG Ratio: 05-Metric-Toolkit/Notes/01-PE-vs-PEG.mdx
+      - EV / EBITDA: 05-Metric-Toolkit/Notes/02-EV-to-EBITDA.mdx
+      - ROIC vs WACC: 05-Metric-Toolkit/Notes/03-ROIC-vs-WACC.mdx
+      - Free Cash Flow Yield: 05-Metric-Toolkit/Notes/04-FCF-Yield.mdx
+      - Debt-to-Equity & Net Debt / EBITDA: 05-Metric-Toolkit/Notes/05-Leverage-Ratios.mdx
+      - Operating & Gross Margin Trajectory: 05-Metric-Toolkit/Notes/06-Margin-Trajectory.mdx
+      - Dividend Payout & FCF Coverage: 05-Metric-Toolkit/Notes/07-Dividend-Payout-and-FCF-Coverage.mdx
+      - Revenue CAGR vs EPS CAGR: 05-Metric-Toolkit/Notes/08-Revenue-vs-EPS-CAGR.mdx
+      - How the Metrics Interact: 05-Metric-Toolkit/Notes/09-How-the-Metrics-Interact.mdx
+  - Valuation:
+    - Overview: 06-Valuation/INDEX.mdx
+    - Concepts:
+      - Intrinsic vs Relative Value: 06-Valuation/Notes/01-Intrinsic-vs-Relative-Value.mdx
+      - DCF Modeling: 06-Valuation/Notes/02-DCF-Modeling.mdx
+      - Reverse DCF: 06-Valuation/Notes/03-Reverse-DCF.mdx
+      - WACC in Practice: 06-Valuation/Notes/04-WACC-in-Practice.mdx
+      - Margin of Safety: 06-Valuation/Notes/05-Margin-of-Safety.mdx
+
+  - track: Selecting Stocks
+  - Growth Investing:
+    - Overview: 07-Growth-Investing/INDEX.mdx
+    - Concepts:
+      - Secular Trends & TAM/SAM/SOM: 07-Growth-Investing/Notes/01-Secular-Trends-and-TAM.mdx
+      - Unit Economics & Gross Margin Defensibility: 07-Growth-Investing/Notes/02-Unit-Economics-and-Gross-Margin.mdx
+      - The Rule of 40: 07-Growth-Investing/Notes/03-Rule-of-40.mdx
+      - Multiple Compression Warning Signs: 07-Growth-Investing/Notes/04-Multiple-Compression-Warning-Signs.mdx
+  - Dividend Growth Investing:
+    - Overview: 08-Dividend-Investing/INDEX.mdx
+    - Concepts:
+      - Dividend Aristocrats & Contenders: 08-Dividend-Investing/Notes/01-Aristocrats-and-Contenders.mdx
+      - Dividend Safety Checklist: 08-Dividend-Investing/Notes/02-Dividend-Safety-Checklist.mdx
+      - Capital Intensity & Balance Sheet: 08-Dividend-Investing/Notes/03-Capital-Intensity-and-Balance-Sheet.mdx
+  - GARP & Hybrid:
+    - Overview: 09-GARP-and-Hybrid/INDEX.mdx
+    - Concepts:
+      - GARP + Dividend Growth Framework: 09-GARP-and-Hybrid/Notes/01-GARP-and-Dividend-Growth-Framework.mdx
+  - Stock Screening:
+    - Overview: 10-Stock-Screening/INDEX.mdx
+    - Concepts:
+      - Screener Mechanics: 10-Stock-Screening/Notes/01-Screener-Mechanics.mdx
+      - Finviz Recipes: 10-Stock-Screening/Notes/02-Finviz-Recipes.mdx
+      - Koyfin Recipes: 10-Stock-Screening/Notes/03-Koyfin-Recipes.mdx
+      - Screener.in Recipes: 10-Stock-Screening/Notes/04-Screener-in-Recipes.mdx
+
+  - track: Research Workflow
+  - Annual Report Analysis:
+    - Overview: 11-Annual-Report-Analysis/INDEX.mdx
+    - Concepts:
+      - Step 1 - Business Model & Moat: 11-Annual-Report-Analysis/Notes/01-Business-Model-and-Moat.mdx
+      - Step 2 - Three-Statement Reconciliation: 11-Annual-Report-Analysis/Notes/02-Three-Statement-Reconciliation.mdx
+      - Step 3 - Management & Capital Allocation: 11-Annual-Report-Analysis/Notes/03-Management-and-Capital-Allocation.mdx
+      - Step 4 - Margin of Safety & DCF: 11-Annual-Report-Analysis/Notes/04-Margin-of-Safety-and-DCF.mdx
+      - 10-K vs Indian Annual Report: 11-Annual-Report-Analysis/Notes/05-10-K-vs-Indian-Annual-Report.mdx
+  - Research Templates:
+    - Overview: 12-Research-Templates/INDEX.mdx
+    - Concepts:
+      - Repository Setup: 12-Research-Templates/Notes/01-Repository-Setup.mdx
+    - Templates:
+      - Company Deep Dive: 12-Research-Templates/Templates/01-Company-Deep-Dive.mdx
+      - Quarterly Earnings Note: 12-Research-Templates/Templates/02-Quarterly-Earnings-Note.mdx
+      - Investment Thesis & Post-Mortem: 12-Research-Templates/Templates/03-Investment-Thesis-and-Post-Mortem.mdx
+
+  - track: Portfolio & Advisory
+  - Portfolio Construction:
+    - Overview: 13-Portfolio-Construction/INDEX.mdx
+    - Concepts:
+      - Modern Portfolio Theory: 13-Portfolio-Construction/Notes/01-Modern-Portfolio-Theory.mdx
+      - Asset Allocation: 13-Portfolio-Construction/Notes/02-Asset-Allocation.mdx
+      - Rebalancing: 13-Portfolio-Construction/Notes/03-Rebalancing.mdx
+      - Position Sizing: 13-Portfolio-Construction/Notes/04-Position-Sizing.mdx
+  - Advisory Practice:
+    - Overview: 14-Advisory-Practice/INDEX.mdx
+    - Concepts:
+      - Fiduciary Duty: 14-Advisory-Practice/Notes/01-Fiduciary-Duty.mdx
+      - Client Risk Profiling: 14-Advisory-Practice/Notes/02-Client-Risk-Profiling.mdx
+      - Asset-Liability Matching: 14-Advisory-Practice/Notes/03-Asset-Liability-Matching.mdx
+      - Tax-Efficient Withdrawals: 14-Advisory-Practice/Notes/04-Tax-Efficient-Withdrawals.mdx
+  - Licensing & Career:
+    - Overview: 15-Licensing-and-Career/INDEX.mdx
+    - Concepts:
+      - US Path - SIE, Series 7/65/66, CFP: 15-Licensing-and-Career/Notes/01-US-Licensing-Path.mdx
+      - The CFA Program: 15-Licensing-and-Career/Notes/02-CFA-Program.mdx
+      - India Path - NISM & SEBI RIA: 15-Licensing-and-Career/Notes/03-India-Licensing-Path.mdx
+      - Study Checklists: 15-Licensing-and-Career/Notes/04-Study-Checklists.mdx
+
+  - track: Review
+  - Capstones:
+    - Overview: 16-Capstones/INDEX.mdx
+    - Projects:
+      - Full Equity Research Report: 16-Capstones/Projects/01-Equity-Research-Report.mdx
+      - Build a Model Portfolio: 16-Capstones/Projects/02-Model-Portfolio.mdx
+      - Client Case Study: 16-Capstones/Projects/03-Client-Case-Study.mdx
+  - Knowledge Check:
+    - Overview: Knowledge-Check/INDEX.mdx

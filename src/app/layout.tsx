@@ -1,0 +1,50 @@
+import type { Metadata } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import "katex/dist/katex.min.css";
+import "./globals.css";
+import { SITE_URL } from "@/lib/site";
+import { DisclaimerModal } from "@/components/course/DisclaimerModal";
+import { AudienceSync } from "@/components/course/AudienceSync";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: "Learn Finance",
+  description: "From compound interest to institutional equity analysis to licensed financial advice - a structured, practical curriculum.",
+};
+
+const THEME_INIT_SCRIPT = `
+(function () {
+  try {
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  } catch (e) {}
+})();
+`;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
+      <body>
+        {children}
+        <DisclaimerModal />
+        <AudienceSync />
+      </body>
+    </html>
+  );
+}

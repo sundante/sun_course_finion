@@ -1,0 +1,158 @@
+# Screener.in Recipes
+
+Screener.in is the most widely used fundamental screener for Indian stocks; its text-based query language lets you combine ratios with AND/OR logic, which makes it straightforward to express the course's growth, dividend and hybrid frameworks - plus India-specific governance filters such as promoter pledging.
+
+```objectives
+time: 45 min
+outcomes:
+  - Write Screener.in queries for the growth, dividend growth and hybrid screens
+  - Add India-specific governance filters (promoter holding, pledges) to any screen
+  - Explain the standalone vs consolidated choice and how it affects screen results
+prerequisites:
+  - "[Finviz Recipes](02-Finviz-Recipes.mdx) - the same three screens for US stocks"
+  - "[GARP + Dividend Growth Framework](../../09-GARP-and-Hybrid/Notes/01-GARP-and-Dividend-Growth-Framework.mdx)"
+```
+
+## How Screener.in Works
+
+Go to **Screens > Create new screen**, type a query in the box, and run it. A query is a list of conditions joined by `AND` / `OR`, with parentheses for grouping. Market capitalization and other absolute values are in **crores of rupees**; growth rates and ratios are in **percent** (write `15`, not `0.15`). You can save screens and add columns to the results table.
+
+> Ratio names must match Screener.in's list. If a name below is not recognized, start typing it in the query box and pick the suggested ratio - names occasionally change.
+
+<div class="audience-beginner" markdown="1">
+
+Indian listed companies are often controlled by a founding family or group, called the **promoter**. How much the promoter owns, and whether they have pledged their shares as collateral for loans, tells you a lot about risk. Screener.in lets you filter on both.
+
+</div>
+
+<div class="audience-analyst" markdown="1">
+
+Screener.in shows **consolidated** figures by default where available, falling back to standalone. For holding companies and groups with large subsidiaries, standalone and consolidated numbers can differ sharply - check which one each result used before comparing ratios. Growth rates are computed from annual reported figures, so check for acquisitions, demergers and accounting changes before trusting a 5-year CAGR.
+
+</div>
+
+## Recipe 1 - High-Growth Screen
+
+```text
+Market Capitalization > 2000 AND
+Sales growth 5Years > 20 AND
+Sales growth 3Years > 20 AND
+Profit growth 3Years > 20 AND
+Qtr Sales Var > 15 AND
+Return on capital employed > 18 AND
+Debt to equity < 0.5 AND
+Promoter holding > 40 AND
+Pledged percentage < 5
+```
+
+**Then check manually:** whether growth is organic (read the annual report for acquisitions), working capital trends (receivable days, inventory days), cash from operations versus net profit, and the size of the runway (see [Secular Trends & TAM](../../07-Growth-Investing/Notes/01-Secular-Trends-and-TAM.mdx)).
+
+## Recipe 2 - Dividend Growth Screen
+
+```text
+Market Capitalization > 5000 AND
+Dividend yield > 1.5 AND
+Dividend Payout < 60 AND
+Profit growth 5Years > 8 AND
+Average return on capital employed 5Years > 15 AND
+Debt to equity < 0.5 AND
+Interest Coverage Ratio > 6 AND
+Free cash flow 3years > 0 AND
+Pledged percentage < 1
+```
+
+**Then check manually:** 10-year dividend per share history - look for a **dividend CAGR above about 6% (Indian inflation)** and no cuts in the last 10 years; the **FCF payout** (dividends / free cash flow) below 60%; and the company's published **dividend distribution policy** (required for the top 1,000 listed companies). PSU stocks will often appear here - judge them separately because their payouts can be set by government needs.
+
+## Recipe 3 - Hybrid (GARP + Dividend Growth) Screen
+
+```text
+Market Capitalization > 2000 AND
+Sales growth 5Years > 10 AND Sales growth 5Years < 25 AND
+Profit growth 5Years > 12 AND
+Average return on capital employed 5Years > 18 AND
+OPM > 12 AND
+Debt to equity < 0.3 AND
+Dividend yield > 0.4 AND
+Dividend Payout > 15 AND Dividend Payout < 50 AND
+PEG Ratio < 2 AND
+Promoter holding > 35 AND
+Pledged percentage < 2
+```
+
+Indian quality compounders usually trade at higher P/E multiples than US peers, so the PEG ceiling of 2 is deliberately looser; apply the FCF-yield-plus-growth test and a margin of safety in research.
+
+**Then check manually:** dividend per share CAGR over 5 and 10 years (target above 8-10%), FCF conversion, and share count (equity dilution through QIPs or preferential allotments).
+
+## Useful Governance Add-Ons
+
+Add any of these to a screen to screen out common Indian red flags:
+
+```text
+Pledged percentage < 5 AND
+Promoter holding > 30 AND
+Change in promoter holding > -5 AND
+Debtor days < 90
+```
+
+| Filter | Why |
+|---|---|
+| Pledged percentage | Pledged promoter shares can be sold by lenders in a falling market, accelerating declines |
+| Promoter holding and its change | Falling promoter holding can signal lower confidence (check the reason - some sales are for diversification or regulatory minimum public holding) |
+| Debtor days | Rising receivables relative to sales can signal aggressive revenue recognition |
+| Related-party transactions | Not screenable - read the notes to accounts |
+
+## Columns to Add to Results
+
+Add these columns to every results table for quick triage: Price to Earning, PEG Ratio, EVEBITDA, Return on capital employed, OPM, Sales growth 5Years, Profit growth 5Years, Debt to equity, Dividend yield, Dividend Payout, Promoter holding, Pledged percentage.
+
+## Check Yourself
+
+```quiz
+- q: "In a Screener.in query, how do you require market cap above 5,000 crore rupees?"
+  options: ["Market Capitalization > 5000000000", "Market Capitalization > 5000", "Market Capitalization > 5B", "Market Cap >= 0.5"]
+  answer: 2
+  explain: "Market capitalization is expressed in crores, so 5,000 crore is written as 5000."
+- q: "Why is Pledged percentage an important filter for Indian stocks?"
+  options: ["It measures dividend payout", "Lenders can sell pledged promoter shares if the price falls, adding forced selling and signalling promoter financial stress", "It is required by the exchange for listing", "It shows foreign ownership"]
+  answer: 2
+  explain: "High pledging links the stock price to the promoter's debt, which can trigger a downward spiral in a sell-off."
+- q: "Why should you check whether a result used standalone or consolidated figures?"
+  answer: "For groups with large subsidiaries, standalone and consolidated revenue, profit and debt can differ greatly. Comparing a standalone ratio for one company with a consolidated ratio for another gives misleading results."
+```
+
+## Exercises
+
+```exercise
+- title: Run and refine
+  task: |
+    Run all three recipes on Screener.in. For the hybrid screen, open the top 10 results and record 10-year dividend per share CAGR, FCF payout and any related-party concerns from the latest annual report. How many pass all eleven hybrid criteria?
+- title: Write your own screen
+  task: |
+    Write a Screener.in query for "cash-rich, debt-free mid-caps with ROCE above 20%, sales growth above 12% over 5 years, and no pledging." Explain each condition.
+  solution: |
+    One reasonable query:
+
+        Market Capitalization > 5000 AND Market Capitalization < 30000 AND
+        Debt to equity < 0.05 AND
+        Return on capital employed > 20 AND
+        Sales growth 5Years > 12 AND
+        Pledged percentage = 0
+
+    Market cap bounds approximate mid-caps (adjust to the current AMFI list); a D/E near zero means effectively debt-free; ROCE above 20% screens for high returns; 5-year sales growth screens for durable growth; zero pledging removes promoter-leverage risk. Add a cash condition if your plan exposes a cash or net cash ratio.
+```
+
+## Study Notes
+
+- Query language: conditions joined by **AND / OR**, market cap in **crores**, percentages as whole numbers.
+- Always add **Pledged percentage** and **Promoter holding** filters for Indian stocks.
+- Check **standalone vs consolidated** and inorganic growth before trusting CAGRs.
+- Dividend growth for India: use **DPS CAGR** and the dividend distribution policy, not strict annual raises.
+
+## References
+
+- Screener.in, [Screens](https://www.screener.in/screens/) and query documentation (accessed 2026)
+- SEBI, Listing Obligations and Disclosure Requirements Regulations, 2015 - shareholding pattern and pledge disclosure (as amended)
+- SEBI, Substantial Acquisition of Shares and Takeovers Regulations, 2011 - disclosure of encumbered (pledged) shares
+- NSE, [Shareholding pattern data](https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern) (accessed 2026)
+
+*Last reviewed: 2026-09*

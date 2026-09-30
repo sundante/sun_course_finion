@@ -1,0 +1,166 @@
+# Quarterly Earnings Note Template
+
+The quarterly earnings note is a short, structured review of each quarterly result against your investment thesis - headline numbers, thesis checkpoints, guidance, balance sheet checks, red flags and an explicit action.
+
+```objectives
+time: 45-90 min per company per quarter
+outcomes:
+  - Review a quarterly result against pre-defined thesis checkpoints rather than headlines
+  - Detect early warning signs in working capital, guidance and disclosure changes
+  - Record a hold, add, trim or exit decision with its reason every quarter
+prerequisites:
+  - "[Company Deep Dive](01-Company-Deep-Dive.mdx)"
+  - "[Multiple Compression Warning Signs](../../07-Growth-Investing/Notes/04-Multiple-Compression-Warning-Signs.mdx)"
+```
+
+## Why It Matters
+
+<div class="audience-beginner" markdown="1">
+
+Every three months, companies publish results and the news tells you whether they "beat" or "missed." That is mostly noise. What matters is whether the reasons you bought the stock are still true. The earnings note keeps you focused on those reasons, quarter after quarter.
+
+</div>
+
+<div class="audience-analyst" markdown="1">
+
+Quarterly reviews are where theses usually break - slowly. Pre-defined checkpoints turn gradual deterioration into discrete, visible signals and counter the natural tendency to explain away each miss. The note also builds a time series of management's guidance accuracy, which feeds the Step 3 track record assessment.
+
+</div>
+
+## How to Use It
+
+| Section | What to focus on |
+|---|---|
+| 1. Headline numbers | Compare with **your** estimate, not only consensus |
+| 2. Thesis checkpoints | Copied from your thesis's drivers table; mark on track / watch / broken |
+| 3. Segments | Where growth and margin changes actually came from |
+| 4. Guidance and commentary | Changes in tone and wording since last quarter |
+| 5. Call notes | Questions dodged are often more informative than those answered |
+| 6. Balance sheet and cash | DSO, inventory, net debt, share count, SBC |
+| 7. Red flags | Tick the boxes honestly |
+| 8. Valuation update | Re-run the reverse DCF; compare with your buy price |
+| 9. Action | Always record a decision, even "hold" |
+
+**Download:** [quarterly-earnings-note.md](/templates/quarterly-earnings-note.md). In Obsidian, the `thesis` property links back to the thesis note, so the thesis page lists every earnings note that references it.
+
+**Where results are published:** US companies file a Form 8-K with the earnings release and a Form 10-Q (quarterly report); Indian companies file results with NSE/BSE under SEBI LODR Regulation 33, usually with an investor presentation and a call transcript on the company website.
+
+## The Template
+
+```markdown
+---
+type: earnings-note
+company:
+ticker:
+quarter: Q_ FY__
+report_date:
+thesis: "[[TICKER - Investment Thesis]]"
+tags: [earnings]
+---
+
+# TICKER - Q_ FY__ Earnings Note
+
+## 1. Headline Numbers
+
+| Metric | Actual | Consensus | My estimate | YoY | QoQ |
+|---|---|---|---|---|---|
+| Revenue | | | | | |
+| Gross margin | | | | | |
+| Operating margin | | | | | |
+| EPS (diluted) | | | | | |
+| Free cash flow | | | | | |
+| Key operating KPI | | | | | |
+
+**One-sentence verdict:**
+
+## 2. Thesis Checkpoints
+
+| Thesis driver | What the thesis needs | This quarter | Status |
+|---|---|---|---|
+| | | | on track / watch / broken |
+| | | | |
+| | | | |
+
+## 3. Segment and Geographic Detail
+
+| Segment / region | Revenue | Growth | Margin | Note |
+|---|---|---|---|---|
+| | | | | |
+
+## 4. Guidance and Management Commentary
+
+- **Guidance change (raised / held / cut):**
+- **What changed in tone or language since last quarter:**
+- **New initiatives, acquisitions, or capital allocation announcements:**
+
+## 5. Earnings Call Notes
+
+- Questions management answered clearly:
+- Questions management avoided:
+- Analyst concerns that came up repeatedly:
+
+## 6. Balance Sheet and Cash Flow Checks
+
+| Check | This quarter | Last quarter | Year ago |
+|---|---|---|---|
+| DSO | | | |
+| Inventory days | | | |
+| Net debt / EBITDA | | | |
+| Buybacks / dividends | | | |
+| Share count (diluted) | | | |
+| SBC as % of revenue | | | |
+
+## 7. Red Flags
+
+- [ ] Revenue up but cash from operations down
+- [ ] Receivables or inventory growing faster than sales
+- [ ] New "adjusted" metric or dropped disclosure
+- [ ] Guidance cut explained as temporary for the second time
+- [ ] Unusual one-off gains in operating profit
+- [ ] Executive or auditor departure
+
+## 8. Valuation Update
+
+- Price: ___ | Max buy price: ___ | Expected value: ___
+- Growth implied by price (reverse DCF): ___ (last quarter: ___)
+- Changes to my scenarios:
+
+## 9. Action
+
+- **Decision:** Hold / Add / Trim / Exit
+- **Reason:**
+- **Open questions for next quarter:**
+```
+
+## Check Yourself
+
+```quiz
+- q: "A company beat consensus EPS, but two of your three thesis checkpoints are marked 'watch' for the second quarter in a row. What should the note emphasize?"
+  options: ["The EPS beat", "The deteriorating checkpoints - they matter more to the thesis than the headline beat", "The share price reaction", "Nothing - it was a beat"]
+  answer: 2
+  explain: "Headline beats can come from one-offs; repeated weakness in thesis drivers is the real signal."
+- q: "Why record a decision every quarter, even when it is 'hold'?"
+  answer: "It forces an active judgment rather than drift, creates a record for later post-mortems, and makes it obvious when you have been holding despite repeated warning signs."
+```
+
+## Exercises
+
+```exercise
+- title: Write a live note
+  task: |
+    For a company you own or follow, write an earnings note for its most recent quarter using the template. Then read the company's previous two quarters' guidance and record how accurate it was.
+```
+
+## Study Notes
+
+- Judge results against **thesis checkpoints**, not consensus headlines.
+- Track guidance accuracy, disclosure changes and working capital every quarter.
+- Always end with **Hold / Add / Trim / Exit** and a reason.
+
+## References
+
+- SEC, [Form 10-Q and Form 8-K general instructions](https://www.sec.gov/forms) (accessed 2026)
+- SEBI, LODR Regulation 33 - financial results (as amended)
+- Mauboussin, "The Babe Ruth Effect in Investing," Credit Suisse (2006) - on measuring decisions, not only outcomes
+
+*Last reviewed: 2026-09*

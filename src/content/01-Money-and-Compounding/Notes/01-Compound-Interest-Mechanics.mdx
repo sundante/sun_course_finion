@@ -1,0 +1,222 @@
+# Compound Interest Mechanics
+
+Compounding is earning returns on your past returns, so wealth grows exponentially with time rather than in a straight line.
+
+```objectives
+time: 45 min
+outcomes:
+  - Calculate future value for any rate, horizon and compounding frequency
+  - Calculate the future value of regular contributions (a SIP or a 401(k) payroll deduction)
+  - Estimate doubling time with the Rule of 72 and explain when it breaks down
+  - Convert between nominal rates, effective annual rates and CAGR
+prerequisites:
+  - Basic algebra and exponents
+```
+
+## Why It Matters
+
+<div class="audience-beginner" markdown="1">
+
+Put 100 in an account paying 10% a year. After one year you have 110. In year two you earn 10% on 110, not on 100, so you end with 121. The extra 1 is interest on interest. It looks tiny, but after 30 years the same 100 becomes about 1,745, and more than three quarters of that growth is interest earned on earlier interest.
+
+The two things you control are **how early you start** and **how long you leave it alone**. Time matters more than the amount.
+
+</div>
+
+<div class="audience-analyst" markdown="1">
+
+Every valuation and wealth-planning model is built on the same exponential function. The sensitivity of terminal wealth to rate and time is what makes small differences - a 1% fee, a 2% tax drag, a five-year delay - dominate long-horizon outcomes. Getting fluent with the formula in both directions (future value and discounting) is a prerequisite for DCF, bond math and retirement planning.
+
+</div>
+
+## The Core Formula
+
+For a single lump sum $$P$$ invested at annual rate $$r$$ for $$n$$ years, compounded once a year:
+
+$$
+FV = P \times (1 + r)^{n}
+$$
+
+With $$m$$ compounding periods per year (monthly: $$m = 12$$), the rate per period is $$r/m$$ and there are $$m \times n$$ periods:
+
+$$
+FV = P \times \left(1 + \frac{r}{m}\right)^{m n}
+$$
+
+As $$m$$ grows without limit, this converges to **continuous compounding**:
+
+$$
+FV = P \times e^{r n}
+$$
+
+### Effective Annual Rate
+
+A quoted (nominal) rate hides the compounding frequency. The **effective annual rate** makes rates comparable:
+
+$$
+\text{EAR} = \left(1 + \frac{r}{m}\right)^{m} - 1
+$$
+
+| Nominal 12%, compounded | EAR |
+|---|---|
+| Annually | 12.00% |
+| Quarterly | 12.55% |
+| Monthly | 12.68% |
+| Daily | 12.75% |
+| Continuously | 12.75% |
+
+Indian bank fixed deposits usually compound quarterly; US savings accounts usually quote APY, which is already the effective rate. Credit cards quote an APR that understates the true effective cost.
+
+### Regular Contributions
+
+Most people build wealth with regular deposits, not one lump sum. The future value of a payment $$C$$ made at the end of each period for $$N$$ periods at rate $$i$$ per period is:
+
+$$
+FV_{\text{annuity}} = C \times \frac{(1 + i)^{N} - 1}{i}
+$$
+
+If payments are at the start of each period (an annuity due, like a SIP debited on the 1st), multiply by $$(1 + i)$$.
+
+### CAGR - Compounding in Reverse
+
+When you know the start and end values, the **compound annual growth rate** is the constant rate that links them:
+
+$$
+\text{CAGR} = \left(\frac{FV}{PV}\right)^{1/n} - 1
+$$
+
+CAGR is how the course measures revenue growth, EPS growth and dividend growth.
+
+## The Shape of Compounding
+
+```mermaid
+flowchart LR
+    P["💵 Principal"] --> Y1["📅 Year 1: interest on principal"]
+    Y1 --> R1["🔁 Reinvest interest"]
+    R1 --> Y2["📅 Year 2: interest on principal + past interest"]
+    Y2 --> R2["🔁 Reinvest again"]
+    R2 --> YN["📈 Year n: exponential growth"]
+
+    style P fill:#e8e0d4,stroke:#c8b89a
+    style R1 fill:#dde4dc,stroke:#b0c4b0
+    style R2 fill:#dde4dc,stroke:#b0c4b0
+    style YN fill:#d8dfe8,stroke:#b0bac8
+```
+
+Growth of 10,000 at different rates:
+
+| Years | 4% | 7% | 10% | 12% |
+|---|---|---|---|---|
+| 10 | 14,802 | 19,672 | 25,937 | 31,058 |
+| 20 | 21,911 | 38,697 | 67,275 | 96,463 |
+| 30 | 32,434 | 76,123 | 174,494 | 299,599 |
+| 40 | 48,010 | 149,745 | 452,593 | 930,510 |
+
+Doubling the horizon from 20 to 40 years at 10% does not double the result - it multiplies it by almost seven.
+
+## The Rule of 72
+
+Dividing 72 by the rate in percent gives an approximate doubling time:
+
+$$
+t_{\text{double}} \approx \frac{72}{r \times 100}
+$$
+
+At 8%, money doubles in about 9 years; at 12%, about 6. The exact answer is $$\ln 2 / \ln(1 + r)$$. The rule is accurate between roughly 6% and 10%; use 69.3 for continuous compounding, and expect larger errors above 20%.
+
+The same rule works for anything that compounds: at 6% inflation, prices double in 12 years.
+
+## Worked Example: Starting Early
+
+Two investors each earn 10% a year and retire at 60.
+
+- **Asha** invests 5,000 a year from age 25 to 35 (10 payments, 50,000 total), then stops.
+- **Ben** invests 5,000 a year from age 35 to 60 (25 payments, 125,000 total).
+
+Asha's pot at 35: $$5{,}000 \times \frac{1.1^{10} - 1}{0.1} = 79{,}687$$. It then compounds for 25 more years: $$79{,}687 \times 1.1^{25} = 863{,}385$$.
+
+Ben's pot at 60: $$5{,}000 \times \frac{1.1^{25} - 1}{0.1} = 491{,}735$$.
+
+Asha contributed 40% as much money and ends with 75% more, because her money had 25 extra years to compound.
+
+## Red Flags
+
+- **Advertised returns quoted as simple averages.** A fund that gains 50% then loses 50% has an average return of 0% but a CAGR of -13.4%.
+- **Projections using nominal rates with no inflation adjustment.** A 1 crore or 1 million target in 30 years buys far less than it does today.
+- **Monthly rates presented as annual.** A "2% a month" product is a 26.8% effective annual rate - an extraordinary claim that should be treated as a warning sign.
+- **Compounding assumed on money that is actually paid out.** Returns only compound if they are reinvested at a similar rate (see [Reinvestment Risk](02-Reinvestment-Risk.mdx)).
+
+## Case Studies
+
+**US - the S&P 500.** From 1926 to 2024, US large-cap stocks returned roughly 10% a year nominal including dividends. About 1 dollar invested in 1926 grew to more than 10,000 dollars. Without reinvesting dividends, the ending value would be a small fraction of that - reinvested dividends did much of the compounding.
+
+**India - the Sensex.** The BSE Sensex started at a base of 100 in 1979 and was above 80,000 in 2024, a price-only CAGR of roughly 15-16% in nominal rupees. Indian inflation over the same period averaged around 7%, so the real CAGR was closer to 8%. Always ask whether a long-run return is nominal or real.
+
+> Index figures are approximate. Check the index provider for exact values.
+
+## Check Yourself
+
+```quiz
+- q: "10,000 is invested at 8% compounded annually. Roughly what is it worth after 18 years?"
+  options: ["24,400", "40,000", "28,800", "64,000"]
+  answer: 2
+  explain: "By the Rule of 72, 8% doubles money every 9 years, so 18 years is two doublings: 10,000 to 20,000 to 40,000. The exact value is 39,960."
+- q: "Which is higher, 12% compounded monthly or 12.5% compounded annually?"
+  options: ["12% monthly", "12.5% annually", "They are equal"]
+  answer: 1
+  explain: "12% monthly has an EAR of (1 + 0.01)^12 - 1 = 12.68%, which beats 12.5%."
+- q: "A stock went from 50 to 200 over 10 years. What is its CAGR?"
+  options: ["30%", "20%", "14.9%", "7.2%"]
+  answer: 3
+  explain: "CAGR = (200 / 50)^(1/10) - 1 = 4^0.1 - 1 = 14.87%."
+- q: "Why does starting to invest 10 years earlier matter more than investing a larger amount later?"
+  answer: "Because terminal value is exponential in time. The early money compounds for the extra years, and the last years of compounding add the most in absolute terms, since they act on the largest balance."
+```
+
+## Exercises
+
+```exercise
+- title: Monthly SIP
+  task: |
+    You invest 10,000 at the start of every month in an equity fund for 20 years. Assume a 12% annual return, compounded monthly.
+
+    1. What is the rate per period and the number of periods?
+    2. What is the future value?
+    3. How much of it is growth rather than your own contributions?
+  hints:
+    - "This is an annuity due, because payments are at the start of each month."
+  solution: |
+    1. i = 1% per month, N = 240.
+    2. FV = 10,000 × ((1.01^240 - 1) / 0.01) × 1.01 = 10,000 × 989.26 × 1.01 ≈ **99.9 lakh** (about 9.99 million).
+    3. Contributions = 24 lakh (2.4 million), so growth ≈ **75.9 lakh** - about 76% of the final value.
+- title: Rule of 72 accuracy
+  task: |
+    For rates of 2%, 8%, 18% and 36%, compare the Rule of 72 doubling time with the exact one, ln 2 / ln(1 + r). Where does the rule break down?
+  solution: |
+    | Rate | Rule of 72 | Exact |
+    |---|---|---|
+    | 2% | 36.0 | 35.0 |
+    | 8% | 9.0 | 9.01 |
+    | 18% | 4.0 | 4.19 |
+    | 36% | 2.0 | 2.25 |
+
+    The rule is nearly exact around 8% and drifts further off at high rates.
+```
+
+## Study Notes
+
+- $$FV = P(1 + r)^n$$; divide the rate and multiply the periods for more frequent compounding.
+- **EAR** makes rates with different compounding frequencies comparable.
+- **Annuity FV** = C × ((1 + i)^N - 1) / i; multiply by (1 + i) for payments at the start.
+- **CAGR** = (FV / PV)^(1/n) - 1 - the course's standard growth measure.
+- **Rule of 72**: doubling time ≈ 72 / rate%.
+- Time is the most powerful variable; returns only compound if they are reinvested.
+
+## References
+
+- CFA Institute, *Quantitative Methods: The Time Value of Money*, CFA Program Level I curriculum (2025)
+- Damodaran, [Annual Returns on Stock, T.Bonds and T.Bills: 1928 - Current](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html) (updated each January)
+- BSE, [S&P BSE Sensex historical data](https://www.bseindia.com/indices/IndexArchiveData.html) (accessed 2026)
+- SEC Office of Investor Education, [Compound Interest Calculator](https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator) (Investor.gov)
+
+*Last reviewed: 2026-09*

@@ -1,0 +1,184 @@
+# Finviz Recipes
+
+Finviz is a free, fast screener for US-listed stocks built from dropdown filters; these recipes translate the course's growth, dividend and hybrid frameworks into exact Finviz filter settings and the follow-up checks the screener cannot do.
+
+```objectives
+time: 40 min
+outcomes:
+  - Build the growth, dividend growth and hybrid screens in Finviz's filter menus
+  - Express each screen as Boolean logic so it can be ported to any screener
+  - List the framework criteria Finviz cannot test, and check them manually
+prerequisites:
+  - "[Screener Mechanics](01-Screener-Mechanics.mdx)"
+  - "[GARP + Dividend Growth Framework](../../09-GARP-and-Hybrid/Notes/01-GARP-and-Dividend-Growth-Framework.mdx)"
+```
+
+## How Finviz Works
+
+Open **Screener**, then use the **Descriptive**, **Fundamental** and **Technical** filter tabs. Each filter is a dropdown with preset ranges ("Over 10%", "Under 50%"). The free version is enough for these recipes; the paid Elite tier adds custom ranges, real-time data and exports. Filters combine with AND.
+
+<div class="audience-beginner" markdown="1">
+
+A screen is a sieve, not a buy list. Its job is to shrink thousands of stocks to 10-30 worth reading about. Every result still needs the research workflow in [Annual Report Analysis](../../11-Annual-Report-Analysis/INDEX.mdx).
+
+</div>
+
+<div class="audience-analyst" markdown="1">
+
+Finviz data comes from third-party vendors and uses trailing-twelve-month or consensus figures with vendor-specific definitions (ROI, for example, is not ROIC as defined in this course). Treat screen outputs as candidates to verify from filings, and save screens so results can be compared across time.
+
+</div>
+
+> Filter names and preset values change occasionally. If a name below does not match exactly, choose the closest filter and the nearest preset value.
+
+## Recipe 1 - High-Growth Screen
+
+**Boolean logic:**
+
+```text
+MarketCap >= 2B
+AND SalesGrowth_5Y > 20%
+AND SalesGrowth_QoQ > 15%
+AND EPSGrowth_Next5Y > 15%
+AND GrossMargin > 50%
+AND (OperatingMargin > 0% OR SalesGrowth_QoQ > 30%)
+AND Debt/Equity < 1
+```
+
+**Finviz settings:**
+
+| Tab | Filter | Setting |
+|---|---|---|
+| Descriptive | Market Cap. | +Mid (over $2bln) |
+| Descriptive | Country | USA |
+| Fundamental | Sales growth past 5 years | Over 20% |
+| Fundamental | Sales growth qtr over qtr | Over 15% |
+| Fundamental | EPS growth next 5 years | Over 15% |
+| Fundamental | Gross Margin | Over 50% |
+| Fundamental | Operating Margin | Positive (>0%) |
+| Fundamental | Debt/Equity | Under 1 |
+
+**Then check manually:** Rule of 40 (growth + FCF margin), net revenue retention, SBC as a share of revenue, and whether the growth is secular (see [Growth Investing](../../07-Growth-Investing/INDEX.mdx)).
+
+## Recipe 2 - Dividend Growth Screen
+
+**Boolean logic:**
+
+```text
+MarketCap >= 10B
+AND DividendYield >= 2%
+AND PayoutRatio < 60%
+AND EPSGrowth_Past5Y > 5%
+AND ROE > 15%
+AND Debt/Equity < 1
+AND CurrentRatio > 1
+```
+
+**Finviz settings:**
+
+| Tab | Filter | Setting |
+|---|---|---|
+| Descriptive | Market Cap. | +Large (over $10bln) |
+| Descriptive | Dividend Yield | Over 2% |
+| Fundamental | Payout Ratio | Under 60% |
+| Fundamental | EPS growth past 5 years | Over 5% |
+| Fundamental | Return on Equity | Over +15% |
+| Fundamental | Debt/Equity | Under 1 |
+| Fundamental | Current Ratio | Over 1 |
+
+**Then check manually:** Finviz's payout ratio is based on earnings, not free cash flow - compute **FCF payout** yourself. Check the dividend history for **consecutive increases** and **5-year dividend CAGR above inflation**, run the [Dividend Safety Checklist](../../08-Dividend-Investing/Notes/02-Dividend-Safety-Checklist.mdx), and cross-reference the Dividend Champions and Contenders list.
+
+## Recipe 3 - Hybrid (GARP + Dividend Growth) Screen
+
+**Boolean logic:**
+
+```text
+MarketCap >= 2B
+AND SalesGrowth_5Y > 10%
+AND EPSGrowth_Past5Y > 10%
+AND EPSGrowth_Next5Y > 10%
+AND PEG < 2
+AND DividendYield > 0% AND DividendYield <= 3%
+AND PayoutRatio < 50%
+AND ROE > 15%
+AND GrossMargin > 30%
+AND Debt/Equity < 0.5
+```
+
+**Finviz settings:**
+
+| Tab | Filter | Setting |
+|---|---|---|
+| Descriptive | Market Cap. | +Mid (over $2bln) |
+| Descriptive | Dividend Yield | Positive (>0%) |
+| Fundamental | Sales growth past 5 years | Over 10% |
+| Fundamental | EPS growth past 5 years | Over 10% |
+| Fundamental | EPS growth next 5 years | Over 10% |
+| Fundamental | PEG | Under 2 |
+| Fundamental | Payout Ratio | Under 50% |
+| Fundamental | Return on Equity | Over +15% |
+| Fundamental | Gross Margin | Over 30% |
+| Fundamental | Debt/Equity | Under 0.5 |
+
+The PEG filter is set at 2 rather than the framework's 1.5 on purpose - analyst growth estimates are noisy, and you will apply the stricter PEG and FCF-yield tests by hand. Sort the results by **Return on Equity** or **PEG** in the **Financial** view.
+
+**Then check manually:** ROIC (not ROE) above 15%, FCF conversion above 80%, dividend CAGR above 8%, share count trend, and the Chowder number.
+
+## Saving and Reviewing Screens
+
+- Save each screen (free account) or bookmark its URL - the URL stores the filter codes.
+- Re-run quarterly and record which names enter and leave. Names that stay for several quarters deserve priority.
+- Use the **Custom** view to add columns you need for triage: P/E, Forward P/E, PEG, ROE, Gross Margin, Dividend, Payout Ratio, EPS next 5Y.
+
+## What Finviz Cannot Test
+
+| Framework criterion | Why not | Do instead |
+|---|---|---|
+| ROIC vs WACC | Finviz shows ROI/ROE with vendor definitions | Compute from the 10-K |
+| FCF payout ratio | Payout is earnings-based | Dividends paid / (CFO - capex) |
+| Dividend streak and CAGR | Not a standard free filter | Dividend history, Champions list |
+| Share count trend | Not filterable | 10-K diluted shares, 5 years |
+| Margin trajectory | Only current margins | 10-year margin history |
+
+## Check Yourself
+
+```quiz
+- q: "Finviz's Payout Ratio filter is set to Under 60%. Why is that not enough for this course's dividend framework?"
+  options: ["Finviz data is always wrong", "It is based on earnings, while the framework requires FCF payout under 60%", "Payout ratio does not matter", "It only covers large caps"]
+  answer: 2
+  explain: "Earnings payout can look safe while free cash flow barely covers the dividend. You must compute FCF payout from the cash flow statement."
+- q: "Why is the hybrid screen's PEG filter set looser (under 2) than the framework's target (under 1.5)?"
+  options: ["To produce more results for their own sake", "Analyst growth estimates are noisy, so a slightly looser screen avoids discarding good candidates before a manual check", "PEG is not important", "Finviz has no 1.5 option, so the target is ignored"]
+  answer: 2
+  explain: "Screens should be a little generous; the strict tests are applied during research with better data."
+- q: "Write the Boolean logic for a screen of US large caps with gross margin over 40%, ROE over 20% and debt/equity under 0.5."
+  answer: "MarketCap >= 10B AND GrossMargin > 40% AND ROE > 20% AND Debt/Equity < 0.5"
+```
+
+## Exercises
+
+```exercise
+- title: Run all three screens
+  task: |
+    Build all three recipes in Finviz. Record the number of results for each, save them, and export or copy the top 15 names by ROE for the hybrid screen. For the top five, compute FCF payout and 5-year dividend CAGR by hand. How many still pass?
+- title: Tune a screen
+  task: |
+    The dividend screen returns too many utilities. Add one filter that removes them without breaking the framework, and explain why that filter is appropriate.
+  solution: |
+    Add Sector: exclude Utilities (or set Gross Margin over 30%, which most regulated utilities fail on a reported basis). Utilities have regulated returns, high leverage and FCF payouts above 100% by design, so they need a different framework than the one this screen implements.
+```
+
+## Study Notes
+
+- Three screens: **growth, dividend growth, hybrid** - each as Boolean logic plus Finviz settings.
+- Finviz payout = earnings-based; ROE/ROI are not ROIC - verify from filings.
+- Screens are generous by design; apply strict tests manually.
+- Save screens and re-run quarterly; track persistence.
+
+## References
+
+- Finviz, [Stock Screener](https://finviz.com/screener.ashx) and [Help: Screener](https://finviz.com/help/screener.ashx) (accessed 2026)
+- DRiP Investing Resource Center, [U.S. Dividend Champions](https://www.dripinvesting.org/) (updated monthly)
+- SEC EDGAR, [Company filings search](https://www.sec.gov/edgar/search/) - for verifying screen results
+
+*Last reviewed: 2026-09*

@@ -1,0 +1,182 @@
+# Free Cash Flow Yield
+
+Free cash flow yield is the free cash a business generates in a year, after paying for the investment needed to run and grow it, as a percentage of what you pay for the business - a cash-based alternative to the earnings yield.
+
+```objectives
+time: 45 min
+outcomes:
+  - Calculate free cash flow to equity and to the firm, and the matching FCF yields
+  - Measure cash conversion (FCF / net income) and explain the common reasons it differs from 100%
+  - Adjust FCF for stock-based compensation, leases and working capital swings
+  - Use FCF yield plus growth as a rough expected-return estimate
+prerequisites:
+  - "[Cash Flow Statement](../../04-Accounting-Foundations/Notes/03-Cash-Flow-Statement.mdx)"
+  - "[EV / EBITDA](02-EV-to-EBITDA.mdx)"
+```
+
+## Why It Matters
+
+<div class="audience-beginner" markdown="1">
+
+Profit on paper and cash in the bank are not the same thing. A company can report a profit while customers have not paid yet, or while it spends huge sums on new factories. Free cash flow is the money left over that could actually be handed to owners. FCF yield tells you how much of that cash you get for each unit of price you pay.
+
+</div>
+
+<div class="audience-analyst" markdown="1">
+
+Accruals are where accounting discretion lives. Research since Sloan (1996) shows that earnings backed by cash are more persistent than earnings driven by accruals, and that high-accrual firms subsequently underperform. FCF yield is also the most direct input to a DCF: in steady state, expected return ≈ FCF yield + growth.
+
+</div>
+
+## Formulas
+
+**Free cash flow to equity (the common "FCF"):**
+
+$$
+\text{FCF} = \text{Cash from operations} - \text{Capital expenditures}
+$$
+
+$$
+\text{FCF yield (equity)} = \frac{\text{FCF}}{\text{Market capitalization}} = \frac{\text{FCF per share}}{\text{Share price}}
+$$
+
+**Free cash flow to the firm (unlevered):**
+
+$$
+\text{FCFF} = \text{EBIT}(1 - t) + \text{D\&A} - \text{Capex} - \Delta \text{Net working capital}
+$$
+
+$$
+\text{FCF yield (firm)} = \frac{\text{FCFF}}{\text{EV}}
+$$
+
+Use equity FCF with market cap, and FCFF with EV. Mixing them is the most common error.
+
+**Cash conversion:**
+
+$$
+\text{Cash conversion} = \frac{\text{FCF}}{\text{Net income}}
+$$
+
+Sustained conversion near or above 80-100% is a strong quality signal; persistently below 60% needs an explanation.
+
+### Adjustments Analysts Make
+
+| Adjustment | Why |
+|---|---|
+| Subtract stock-based compensation | It is a real cost paid in shares; ignoring it flatters FCF at many tech companies |
+| Subtract lease principal payments | Under IFRS 16 / Ind AS 116, lease payments move to financing, inflating CFO |
+| Normalize working capital | One-off inventory or receivable swings distort a single year |
+| Split maintenance and growth capex | Owner earnings = CFO - maintenance capex, which values the business as if growth stopped |
+| Treat acquisitions as capex for serial acquirers | Otherwise "organic" FCF ignores the money spent buying growth |
+
+## Worked Example
+
+| Item | Value |
+|---|---|
+| Net income | 800 |
+| Depreciation and amortization | 300 |
+| Stock-based compensation (non-cash, in CFO) | 150 |
+| Increase in working capital | -120 |
+| **Cash from operations** | **1,130** |
+| Capex | -380 |
+| **Reported FCF** | **750** |
+| FCF after SBC | 600 |
+| Market cap | 15,000 |
+
+Reported FCF yield = 750 / 15,000 = **5.0%**. After SBC, 600 / 15,000 = **4.0%**. Cash conversion (after SBC) = 600 / 800 = **75%**.
+
+**Expected return shortcut.** If FCF grows 6% a year indefinitely and the multiple stays constant:
+
+$$
+E[R] \approx \text{FCF yield} + g = 4.0\% + 6\% = 10\%
+$$
+
+## Benchmarks
+
+| Context | FCF yield | Reading |
+|---|---|---|
+| Broad US market (S&P 500) | roughly 3-5% | Historical range |
+| Broad Indian market (Nifty 50) | roughly 2-4% | Higher multiples, higher growth |
+| Mature staples, pharma, telecom | 4-8% | Low growth; yield does the work |
+| High-growth software | 0-4% | Growth does the work; check SBC |
+| Above 10% | Deep value or distress | Ask what the market is worried about |
+| Negative | Growth investment or trouble | Acceptable only with a funded, high-ROIC plan |
+
+## Red Flags
+
+- **Net income rising, FCF flat or falling** for several years - receivables or inventory are growing faster than sales.
+- **CFO boosted by stretching payables, factoring receivables, or supplier finance** - timing, not earning power.
+- **Capex consistently below depreciation** in a growing business - under-investment that flatters FCF today.
+- **Large, rising SBC** excluded from "free" cash flow.
+- **Serial acquirers** whose FCF excludes the acquisitions that drive their growth.
+- **Capitalized costs** (software development, customer acquisition, interest) that move spending out of CFO and into investing.
+
+## How It Interacts With Other Metrics
+
+| Metric | Interaction |
+|---|---|
+| [ROIC vs WACC](03-ROIC-vs-WACC.mdx) | FCF = NOPAT × (1 - g/ROIC). High ROIC lets a company grow and still yield a lot of cash. |
+| [Dividend Payout & FCF Coverage](07-Dividend-Payout-and-FCF-Coverage.mdx) | Dividends must come from FCF over time; FCF yield caps the sustainable dividend yield. |
+| [P/E](01-PE-vs-PEG.mdx) | Compare earnings yield (1/PE) with FCF yield; a big gap means low cash conversion. |
+| [Leverage](05-Leverage-Ratios.mdx) | FCF repays debt; a high FCF yield with rising debt is contradictory - find out why. |
+
+## Case Studies
+
+**US - Apple's cash machine.** Apple has generated roughly 90-110 billion dollars of free cash flow a year in recent years on very low capex relative to its size, with cash conversion consistently above 100% of net income. Its FCF has funded more than 600 billion dollars of buybacks over the last decade. The FCF yield at a given price is the single best summary of how much of that cash the buyer is paying for.
+
+**India - Infosys and TCS vs capital-heavy peers.** Indian IT services leaders convert a high share of net income into FCF because they need little physical capital, and they return most of it through dividends and buybacks. Compare this with capital-intensive sectors such as steel or telecom, where reported profits in boom years were largely reinvested in capacity, so FCF yields stayed low or negative.
+
+**India - accrual warning signs.** Several companies that later collapsed (for example, some infrastructure and textile firms in the 2010s) reported growing profits for years while operating cash flow stayed weak and receivables ballooned. A simple five-year check of cumulative net income versus cumulative CFO would have flagged them.
+
+> Figures are approximate and for teaching.
+
+## Check Yourself
+
+```quiz
+- q: "CFO is 900, capex 400, SBC 100 (included in CFO), market cap 10,000. What is the FCF yield after SBC?"
+  options: ["5.0%", "4.0%", "9.0%", "6.0%"]
+  answer: 2
+  explain: "FCF = 900 - 400 = 500; after SBC, 400. 400 / 10,000 = 4.0%."
+- q: "Which denominator goes with free cash flow to the firm (FCFF)?"
+  options: ["Market capitalization", "Enterprise value", "Book equity", "Revenue"]
+  answer: 2
+  explain: "FCFF belongs to all capital providers, so it pairs with EV, which includes debt."
+- q: "Net income has grown 15% a year for five years; cumulative CFO over the period is half of cumulative net income. What is the most likely concern?"
+  options: ["The company pays too much tax", "Earnings are driven by accruals such as rising receivables or inventory, not cash", "Capex is too low", "The dividend is too high"]
+  answer: 2
+  explain: "Earnings that do not turn into operating cash over several years usually reflect working capital build-up or aggressive revenue recognition."
+- q: "A stock has a 3% FCF yield and you expect FCF to grow 9% a year for a long time. What is a rough expected annual return if the valuation multiple stays the same?"
+  answer: "About 12%: FCF yield plus growth, 3% + 9%."
+```
+
+## Exercises
+
+```exercise
+- title: Five-year cash conversion
+  task: |
+    For one company in each market (US and India), collect five years of net income, CFO, capex, SBC and acquisitions. Compute annual and cumulative cash conversion, and FCF yield at today's market cap. Write two sentences on earnings quality.
+- title: Owner earnings
+  task: |
+    A company reports CFO of 1,000, total capex of 600 and depreciation of 350. Management says maintenance capex is roughly equal to depreciation. Estimate owner earnings and explain what the remaining capex represents.
+  solution: |
+    Owner earnings ≈ CFO - maintenance capex = 1,000 - 350 = **650**. The remaining 250 of capex is growth investment. Owner earnings (650) show what the business could distribute if it stopped growing; reported FCF (400) shows what it distributes while growing. The growth capex is only worth it if it earns more than WACC.
+```
+
+## Study Notes
+
+- **FCF = CFO - capex**; **FCF yield = FCF / market cap** (or FCFF / EV).
+- **Cash conversion = FCF / net income**; sustained low conversion is a red flag.
+- Subtract SBC and lease payments; normalize working capital.
+- **Expected return ≈ FCF yield + growth** at a constant multiple.
+- Compare cumulative net income with cumulative CFO over 5 years.
+
+## References
+
+- Sloan, "Do Stock Prices Fully Reflect Information in Accruals and Cash Flows about Future Earnings?" *The Accounting Review* (1996)
+- Buffett, [Berkshire Hathaway Shareholder Letter](https://www.berkshirehathaway.com/letters/1986.html) (1986) - owner earnings
+- Mauboussin & Callahan, "Capital Allocation: Results, Analysis, and Assessment," Morgan Stanley Investment Management (2022)
+- Apple Inc., Form 10-K (fiscal 2024), consolidated statements of cash flows
+- Infosys Ltd., Integrated Annual Report (fiscal 2025)
+
+*Last reviewed: 2026-09*

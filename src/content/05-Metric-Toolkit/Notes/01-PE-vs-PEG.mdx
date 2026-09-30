@@ -1,0 +1,150 @@
+# P/E vs PEG Ratio
+
+The P/E ratio tells you how many years of current earnings the market is paying for a stock; the PEG ratio divides that by expected earnings growth, so companies growing at different speeds can be compared on one scale.
+
+```objectives
+time: 40 min
+outcomes:
+  - Calculate trailing and forward P/E and the PEG ratio from market data and estimates
+  - Explain what a P/E implies about growth and required return using the Gordon growth link
+  - Benchmark P/E and PEG against the right sector and market ranges
+  - Recognize when a low P/E is a value trap and when a high PEG is justified
+prerequisites:
+  - "[Income Statement](../../04-Accounting-Foundations/Notes/01-Income-Statement.mdx) - EPS"
+  - "[ROIC vs WACC](03-ROIC-vs-WACC.mdx)"
+```
+
+## Why It Matters
+
+<div class="audience-beginner" markdown="1">
+
+If a shop earns 10 a year and someone sells it to you for 200, you are paying 20 times its earnings. That is the P/E. On its own it does not tell you much: paying 20 times for a shop whose profits double every few years is a bargain; paying 20 times for one that is shrinking is expensive. The PEG ratio adds growth into the picture.
+
+</div>
+
+<div class="audience-analyst" markdown="1">
+
+P/E is a compressed DCF. In a steady-state model, $$P/E = \frac{\text{payout ratio}}{r - g}$$ (on forward earnings), and since payout = 1 - g / ROE, the multiple depends on required return, growth and the return on reinvested capital together. PEG is a heuristic that linearizes this relationship. It is useful for screening but ignores ROIC, duration of growth and risk.
+
+</div>
+
+## Formulas
+
+$$
+\text{P/E} = \frac{\text{Share price}}{\text{Earnings per share}} = \frac{\text{Market capitalization}}{\text{Net income}}
+$$
+
+| Variant | Earnings used | Strength | Weakness |
+|---|---|---|---|
+| Trailing (TTM) P/E | Last 12 months reported EPS | Real, audited numbers | Backward-looking |
+| Forward P/E | Next 12 months consensus EPS | Reflects expected change | Analyst estimates are often optimistic |
+| Shiller CAPE | 10-year average inflation-adjusted EPS | Smooths the cycle | Slow; affected by accounting changes |
+
+$$
+\text{PEG} = \frac{\text{P/E}}{\text{Expected annual EPS growth (in \%)}}
+$$
+
+A P/E of 30 with 20% expected growth gives a PEG of 1.5. By Peter Lynch's rule of thumb, PEG near 1 is fair, below 1 is potentially cheap, and above 2 is expensive. Use growth over the next 3-5 years, and say which P/E (trailing or forward) you used.
+
+**Dividend-adjusted PEG** (for mature payers): $$\text{PEGY} = \frac{\text{P/E}}{g + \text{dividend yield}}$$.
+
+## What a P/E Implies
+
+The inverse of P/E is the **earnings yield**. For a no-growth company that pays out everything, earnings yield ≈ required return. With growth, the Gordon growth model gives:
+
+$$
+\frac{P}{E_1} = \frac{1 - g/\text{ROE}}{r - g}
+$$
+
+**Example.** Required return 10%, growth 6%, ROE 20%: payout = 1 - 6/20 = 70%, so fair forward P/E = 0.70 / 0.04 = **17.5x**. If ROE were only 8%, payout = 25% and fair P/E = 0.25 / 0.04 = **6.25x** - same growth, much lower value, because low-ROE growth consumes most of the earnings.
+
+## Sector and Market Benchmarks
+
+Ranges below are rough, through-the-cycle forward P/E guides. Compare a company with its own 5-10 year history and close peers first.
+
+| Sector | US forward P/E | India forward P/E | Notes |
+|---|---|---|---|
+| Broad market | S&P 500: 15-22x | Nifty 50: 17-24x | India has traded at a structural premium to other emerging markets |
+| Software / internet | 25-45x | 30-60x | Use EV/Sales or Rule of 40 for loss-makers |
+| Consumer staples / FMCG | 18-25x | 40-60x | Indian FMCG trades at some of the highest multiples globally |
+| Banks | 9-14x | 12-20x (private); 6-10x (PSU) | Use P/B and ROE together |
+| Industrials | 15-22x | 25-45x | Cyclical - use mid-cycle earnings |
+| Energy / materials | 8-14x | 8-15x | P/E is lowest at the earnings peak - a trap |
+| Utilities | 14-19x | 12-20x | Rate-sensitive |
+
+## Red Flags
+
+- **Low P/E on peak earnings.** Cyclical companies (steel, chemicals, shipping, auto) look cheapest at the top of the cycle, just before earnings fall.
+- **Earnings inflated by one-offs** - asset sales, tax credits, lower provisions. Use adjusted EPS carefully and read the notes.
+- **Forward P/E far below trailing P/E** because of heroic estimates.
+- **PEG built on one year of growth** or on growth from a depressed base.
+- **High P/E and falling ROIC.** The market is paying for growth that may not create value.
+- **Share count rising.** EPS growth below net income growth means dilution (see [Revenue vs EPS CAGR](08-Revenue-vs-EPS-CAGR.mdx)).
+
+## How It Interacts With Other Metrics
+
+| Metric | Interaction |
+|---|---|
+| [ROIC vs WACC](03-ROIC-vs-WACC.mdx) | Same growth deserves a higher P/E when ROIC is higher, because less capital is needed to grow. |
+| [EV/EBITDA](02-EV-to-EBITDA.mdx) | P/E is distorted by leverage and interest; EV/EBITDA is not. Check both for levered companies. |
+| [FCF Yield](04-FCF-Yield.mdx) | A low P/E with a low FCF yield means earnings are not turning into cash. |
+| [Revenue CAGR vs EPS CAGR](08-Revenue-vs-EPS-CAGR.mdx) | The "G" in PEG should be sustainable EPS growth, not margin expansion that cannot repeat. |
+
+## Case Studies
+
+**US - Nvidia, 2023-2024.** Nvidia's trailing P/E exceeded 100x in early 2023, which looked absurd. But EPS grew several-fold over the next year on data-centre demand, and its forward P/E fell into the 30-50x range even as the share price rose. A high trailing P/E can hide a low forward PEG; the question is whether the growth is durable.
+
+**India - Hindustan Unilever vs PSU banks.** For years, Hindustan Unilever traded at 50-70x earnings with high-single to low-double digit growth - a PEG well above 3 - while large public sector banks traded at 5-8x earnings. HUL's multiple reflects very high ROCE, low capital needs, predictability and a long growth runway; PSU banks' multiples reflected asset-quality risk and lower returns on equity. Neither multiple is "wrong" without reference to ROIC and risk.
+
+> Figures are approximate and for teaching. Check the latest filings and data.
+
+## Check Yourself
+
+```quiz
+- q: "A stock trades at 45 with EPS of 3.0 and expected EPS growth of 18%. What is its PEG?"
+  options: ["0.83", "15", "1.2", "2.7"]
+  answer: 1
+  explain: "P/E = 45 / 3 = 15. PEG = 15 / 18 = 0.83."
+- q: "Why can a cyclical stock look cheapest on P/E at exactly the wrong time?"
+  options: ["P/E ignores the share price", "At the cycle peak, earnings are unusually high, making the P/E unusually low just before earnings fall", "Cyclicals never pay dividends", "Accounting rules change at the peak"]
+  answer: 2
+  explain: "Peak earnings shrink the P/E. When the cycle turns, earnings fall and the stock often falls with them."
+- q: "Two companies both grow EPS at 8%. Company A has ROE of 25%, Company B has ROE of 10%. Which deserves the higher P/E, all else equal?"
+  options: ["A", "B", "Neither"]
+  answer: 1
+  explain: "A needs to retain only 8/25 = 32% of earnings to grow, and can pay out the rest. B must retain 80%. Higher payout at the same growth means higher value."
+- q: "What does a P/E of 25 mean in terms of earnings yield, and how does that compare with a 7% government bond?"
+  answer: "Earnings yield = 1/25 = 4%. It is below the 7% bond yield, so investors are relying on earnings growth to make the stock worthwhile compared with the risk-free bond."
+```
+
+## Exercises
+
+```exercise
+- title: Implied fair P/E
+  task: |
+    A company has ROE of 18%, expected long-run growth of 7%, and a cost of equity of 11.5%. Calculate its justified forward P/E. Then recompute it for growth of 9%. What does the change tell you?
+  solution: |
+    At g = 7%: payout = 1 - 7/18 = 61.1%. P/E = 0.611 / 0.045 = **13.6x**.
+    At g = 9%: payout = 1 - 9/18 = 50%. P/E = 0.50 / 0.025 = **20x**.
+    Two points of extra growth raised the justified P/E by nearly 50%, because the denominator (r - g) shrinks - the reason high-multiple stocks are so sensitive to growth disappointments.
+- title: PEG screen sanity check
+  task: |
+    Run a screen for PEG under 1 in your market (see [Stock Screening](../../10-Stock-Screening/INDEX.mdx)). For the top five results, check: Is the growth estimate from one year or several? Are earnings near a cyclical peak? Is ROIC above WACC? Remove any that fail and explain why.
+```
+
+## Study Notes
+
+- **P/E = Price / EPS**; state trailing or forward.
+- **PEG = P/E / growth %**; about 1 is "fair" by convention - a heuristic, not a law.
+- Justified P/E = (1 - g/ROE) / (r - g): growth only adds value with high ROE/ROIC.
+- Cyclicals: low P/E at the peak is a trap; use mid-cycle earnings.
+- Compare with sector and own history; Indian multiples run structurally higher in many sectors.
+
+## References
+
+- Lynch, *One Up on Wall Street* (Simon & Schuster, 1989) - origin of the PEG rule of thumb
+- Damodaran, *Investment Valuation*, 3rd ed. (Wiley, 2012) - chapters on earnings multiples
+- Shiller, [Online Data - CAPE ratio](http://www.econ.yale.edu/~shiller/data.htm) (updated monthly)
+- NSE Indices, [Nifty 50 P/E, P/B and dividend yield history](https://www.niftyindices.com/reports/historical-data) (accessed 2026)
+
+*Last reviewed: 2026-09*

@@ -1,0 +1,176 @@
+# Step 2 - Three-Statement Reconciliation
+
+The second step checks that the income statement, balance sheet and cash flow statement tell the same story: that reported profits turn into cash, that working capital and assets grow in line with the business, and that nothing important sits in the notes or off the balance sheet.
+
+```objectives
+time: 75 min
+outcomes:
+  - Reconcile net income to operating cash flow and compute the accruals ratio
+  - Calculate DSO, DIO, DPO and the cash conversion cycle, and interpret their trends
+  - Read the auditor's report, key audit matters and (in India) the CARO report for warning signs
+  - Apply a ten-point earnings quality checklist to a company's filings
+prerequisites:
+  - "[How the Statements Link](../../04-Accounting-Foundations/Notes/04-How-the-Statements-Link.mdx)"
+  - "[Free Cash Flow Yield](../../05-Metric-Toolkit/Notes/04-FCF-Yield.mdx)"
+  - "[Step 1 - Business Model & Moat](01-Business-Model-and-Moat.mdx)"
+```
+
+## Why It Matters
+
+<div class="audience-beginner" markdown="1">
+
+Profit is an opinion; cash is a fact. Accounting rules give management choices about when to count sales and costs. Most of the famous frauds and collapses showed the same pattern: profits kept rising while cash did not. This step checks whether the three financial statements agree with each other.
+
+</div>
+
+<div class="audience-analyst" markdown="1">
+
+The three statements are articulated: every accrual shows up on the balance sheet and, eventually, in cash. Reconciliation catches both outright manipulation and legitimate but unsustainable earnings (working capital build, capitalized costs, one-off gains). The accruals anomaly literature and forensic models (Beneish M-score, Sloan accruals) formalize the same checks; the analyst's job is to explain every large gap between accrual and cash measures.
+
+</div>
+
+## The Reconciliation
+
+```mermaid
+flowchart LR
+    NI["🧾 Net income (income statement)"] --> ADJ["➕ Non-cash items: D&A, SBC, impairments"]
+    ADJ --> WC["🔄 Working capital changes (balance sheet)"]
+    WC --> CFO["💵 Cash from operations (cash flow statement)"]
+    CFO --> CAPEX["🏭 minus Capex (ties to PP&E on the balance sheet)"]
+    CAPEX --> FCF["✅ Free cash flow"]
+    FCF --> BS["⚖️ Must explain the change in cash and net debt"]
+
+    style NI fill:#e8e0d4,stroke:#c8b89a
+    style CFO fill:#d8dfe8,stroke:#b0bac8
+    style FCF fill:#dde4dc,stroke:#b0c4b0
+```
+
+### Accruals Ratio
+
+$$
+\text{Accruals ratio (cash flow basis)} = \frac{\text{Net income} - \text{CFO} - \text{CFI}}{\text{Average net operating assets}}
+$$
+
+A simpler version analysts use every day:
+
+$$
+\text{Accruals} = \frac{\text{Net income} - \text{CFO}}{\text{Average total assets}}
+$$
+
+Persistently positive and rising accruals (net income well above CFO) are a warning sign. Look at **cumulative** net income vs cumulative CFO over 5 years.
+
+### Working Capital Days
+
+$$
+\text{DSO} = \frac{\text{Receivables}}{\text{Revenue}} \times 365 \qquad \text{DIO} = \frac{\text{Inventory}}{\text{COGS}} \times 365 \qquad \text{DPO} = \frac{\text{Payables}}{\text{COGS}} \times 365
+$$
+
+$$
+\text{Cash conversion cycle} = \text{DSO} + \text{DIO} - \text{DPO}
+$$
+
+Rising DSO means customers are paying more slowly - or revenue is being recognized before it is really earned. Rising DIO can mean unsold stock. Rising DPO can mean the company is stretching suppliers to flatter cash flow.
+
+## Worked Example
+
+| | Year 1 | Year 2 | Year 3 |
+|---|---|---|---|
+| Revenue | 1,000 | 1,200 | 1,450 |
+| Net income | 100 | 125 | 155 |
+| CFO | 95 | 80 | 60 |
+| Receivables | 150 | 230 | 350 |
+| DSO | 55 | 70 | 88 |
+
+Revenue grew 45% and net income 55% over two years, while CFO fell by a third. Receivables more than doubled and DSO rose from 55 to 88 days. Cumulative net income (380) vs cumulative CFO (235): 38% of reported profit has not arrived as cash. Before believing the growth, find out why customers are paying more slowly - a change in terms, a new low-quality customer group, or revenue booked too early.
+
+## Earnings Quality Checklist
+
+| # | Check | Warning sign |
+|---|---|---|
+| 1 | Cumulative CFO vs net income (5 years) | CFO below ~80% of net income |
+| 2 | DSO trend | Rising faster than peers or than terms explain |
+| 3 | DIO trend | Inventory growing faster than sales |
+| 4 | DPO trend | Sharp rise flattering CFO; supplier finance programmes |
+| 5 | Capitalized costs | Rising capitalized software, development or interest |
+| 6 | One-off gains | Recurring "exceptional items"; gains on asset sales in operating profit |
+| 7 | Depreciation rate | Falling D&A / gross PP&E (longer useful lives) |
+| 8 | Tax rate | Effective tax rate far below statutory with no clear reason |
+| 9 | Related-party transactions | Large or rising sales, purchases, loans or guarantees with promoter entities |
+| 10 | Auditor | Qualified opinion, emphasis of matter, auditor resignation, small audit firm for a large company |
+
+## Reading the Auditor's Report
+
+| Item | US | India |
+|---|---|---|
+| Opinion | Unqualified (clean), qualified, adverse, disclaimer | Same categories under SA 700-705 |
+| Key/critical matters | **Critical Audit Matters (CAMs)** | **Key Audit Matters (KAMs)** |
+| Extra reporting | Internal control opinion (SOX 404, larger filers) | **CARO 2020** report: loans to related parties, defaults, fraud reported, fixed asset verification |
+| Auditor changes | Form 8-K Item 4.01 | Stock exchange disclosure with reasons (SEBI 2019 circular) |
+
+CAMs and KAMs tell you where the auditor spent the most judgment - usually revenue recognition, goodwill impairment, provisions or tax. Read them first.
+
+## Red Flags
+
+- Net income growing while CFO stagnates or falls for two or more years.
+- DSO rising steadily without a stated change in credit terms.
+- Large "other income" or "exceptional items" every year.
+- Frequent restatements, changes in accounting policies, or changes in segment reporting.
+- Auditor resignation mid-term, especially with stated disagreements (in India, the resignation letter must be disclosed).
+- Large cash balances alongside large borrowings - ask why a company with cash is paying interest (a classic sign in several Indian frauds).
+
+## Case Studies
+
+**US - Enron, 2001.** Enron reported rising earnings, but much of its profit came from mark-to-market gains on long-term contracts, and debt was hidden in off-balance-sheet special purpose entities. Operating cash flow was weak relative to earnings in the years before its collapse, and the notes on related-party entities were famously opaque. The lesson: when you cannot understand the notes, the notes are the problem.
+
+**India - Satyam Computer Services, 2009.** Satyam's chairman confessed in January 2009 that about 5,000 crore rupees of the cash and bank balances on its balance sheet did not exist. For years, reported profits had been matched by fictitious cash - yet the company earned little interest on that "cash" and had borrowings at the same time. A simple check (interest income divided by average cash balance) would have shown a yield far below deposit rates.
+
+**India - DSO as a warning.** Several Indian infrastructure and EPC companies in the 2010s reported strong profits while receivables and "unbilled revenue" ballooned to well over a year of sales. When clients (often government entities) delayed payments, the companies ran short of cash and later defaulted. DSO trends in the annual reports showed the problem years ahead.
+
+## Check Yourself
+
+```quiz
+- q: "Receivables are 300 and annual revenue is 1,500. What is DSO?"
+  options: ["20 days", "73 days", "50 days", "5 days"]
+  answer: 2
+  explain: "DSO = 300 / 1,500 × 365 = 73 days."
+- q: "Over five years, cumulative net income is 1,000 and cumulative CFO is 550. What does this suggest?"
+  options: ["Excellent earnings quality", "Much of reported profit has not turned into cash - check working capital, capitalized costs and revenue recognition", "The tax rate is too high", "Nothing - CFO is always lower than net income"]
+  answer: 2
+  explain: "CFO at 55% of net income over five years is a significant gap that needs a clear, benign explanation."
+- q: "Why is a company holding large cash and large borrowings at the same time worth questioning?"
+  options: ["It is illegal", "Paying interest on debt while holding idle cash is costly - the cash may be restricted, trapped or not real", "It always means fraud", "It raises the P/E"]
+  answer: 2
+  explain: "There can be benign reasons (trapped overseas cash, timing), but the combination was a feature of Satyam and several other frauds, so it deserves an explanation."
+- q: "What is the Indian equivalent of US Critical Audit Matters, and why read them first?"
+  answer: "Key Audit Matters (KAMs). They show where the auditor applied the most judgment - often revenue recognition, impairments or provisions - which points you to the areas where earnings are most sensitive to management estimates."
+```
+
+## Exercises
+
+```exercise
+- title: Five-year reconciliation
+  task: |
+    For the company you used in Step 1, build a five-year table: revenue, net income, CFO, capex, FCF, receivables, inventory, payables, DSO, DIO, DPO and CCC. Compute cumulative net income vs CFO and the accruals ratio. Write three sentences on earnings quality.
+- title: Read the auditor
+  task: |
+    From the same annual report, list every Key or Critical Audit Matter, the auditor's opinion, and (for Indian companies) any CARO observations. What does each KAM tell you about where the numbers depend on judgment?
+```
+
+## Study Notes
+
+- Reconcile **NI → CFO → FCF → change in cash and net debt**.
+- **Accruals** = (NI - CFO) / assets; compare cumulative NI and CFO over 5 years.
+- **CCC = DSO + DIO - DPO**; trends matter more than levels.
+- Read the auditor's opinion and **CAMs/KAMs** first; in India, also **CARO 2020**.
+- Cash plus debt, rising DSO and recurring one-offs are classic warning signs.
+
+## References
+
+- Sloan, "Do Stock Prices Fully Reflect Information in Accruals and Cash Flows about Future Earnings?" *The Accounting Review* (1996)
+- Beneish, "The Detection of Earnings Manipulation," *Financial Analysts Journal* (1999)
+- Schilit, Perler & Engelhart, *Financial Shenanigans*, 4th ed. (McGraw-Hill, 2018)
+- PCAOB, AS 3101 - critical audit matters (2017); ICAI, SA 701 - key audit matters (2017)
+- Ministry of Corporate Affairs, Companies (Auditor's Report) Order, 2020 (CARO 2020)
+- SEBI, Circular on resignation of statutory auditors, CIR/CFD/CMD1/114/2019 (2019)
+
+*Last reviewed: 2026-09*

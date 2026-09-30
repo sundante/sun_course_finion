@@ -1,0 +1,392 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@plugin "@tailwindcss/typography";
+
+/* ------------------------------------------------------------------------ */
+/* Runtime color/glass tokens.                                              */
+/* These are plain CSS custom properties (not inside @theme) so that the    */
+/* `.dark` class can swap their values at runtime. The @theme inline block  */
+/* below aliases each Tailwind design token to one of these via var(), the  */
+/* same indirection already used for --font-sans/--font-mono - this keeps   */
+/* generated utilities (bg-sun-yellow, shadow-glass-md, ...) reactive to    */
+/* theme changes instead of baking a static light-mode value at build time. */
+/* ------------------------------------------------------------------------ */
+:root {
+  --sun-yellow:      #FFDA47;
+  --sun-yellow-dk:   #E8C200;
+  --sun-yellow-dim:  rgba(255, 218, 71, 0.14);
+  --sun-yellow-bdr:  rgba(255, 218, 71, 0.38);
+  --sun-dark:        #111111;
+  --sun-muted:       #111111;
+  --sun-amber:       #7a6000;
+  --sun-bg:          #ffffff;
+  --sun-surface:     #ffffff;
+  --sun-coral:       #D97757;
+  --sun-coral-dim:   rgba(217, 119, 87, 0.10);
+  --sun-coral-bdr:   rgba(217, 119, 87, 0.28);
+  --sun-coral-text:  #a84f2f;
+  --sun-wip:         #9ca3af;
+
+  /* Refined solid surfaces - named glass for existing utility compatibility. */
+  --glass-panel-bg:     #ffffff;
+  --glass-panel-border: rgba(255, 218, 71, 0.52);
+  --glass-nav-bg:       #ffffff;
+  --glass-nav-border:   rgba(255, 218, 71, 0.52);
+  --glass-card-bg:      #ffffff;
+  --glass-card-border:  rgba(255, 218, 71, 0.52);
+  --glass-modal-bg:     #ffffff;
+  --glass-modal-border: rgba(255, 218, 71, 0.52);
+  --glass-scrim:        rgba(17, 17, 17, 0.35);
+
+  --glass-shadow-sm: none;
+  --glass-shadow-md: none;
+  --glass-shadow-lg: none;
+  --glass-glow-yellow: 0 0 0 1px var(--sun-yellow-bdr), 0 0 24px rgba(255, 218, 71, 0.25);
+
+  /* Course map (/map): day parchment, brown ink */
+  --map-paper:      #f5ead3;
+  --map-paper-edge: #e2cfa6;
+  --map-ink:        #4a3520;
+  --map-ink-soft:   #8a6c47;
+  --map-route:      #7a5a36;
+  --map-accent:     #FFDA47;
+  --map-on-accent:  #2b1d0e; /* text on the accent, both themes */
+
+  --shadcn-background: 0 0% 100%;
+  --shadcn-foreground: 0 0% 7%;
+  --shadcn-card: 0 0% 100%;
+  --shadcn-card-foreground: 0 0% 7%;
+  --shadcn-popover: 0 0% 100%;
+  --shadcn-popover-foreground: 0 0% 7%;
+  --shadcn-primary: 47 100% 64%;
+  --shadcn-primary-foreground: 0 0% 7%;
+  --shadcn-secondary: 0 0% 100%;
+  --shadcn-secondary-foreground: 0 0% 7%;
+  --shadcn-muted: 0 0% 100%;
+  --shadcn-muted-foreground: 0 0% 7%;
+  --shadcn-accent: 0 0% 100%;
+  --shadcn-accent-foreground: 0 0% 7%;
+  --shadcn-destructive: 0 84% 60%;
+  --shadcn-destructive-foreground: 0 0% 98%;
+  --shadcn-border: 47 100% 64%;
+  --shadcn-input: 47 100% 64%;
+  --shadcn-ring: 47 100% 64%;
+}
+
+.dark {
+  --sun-yellow:      #FFDA47;
+  --sun-yellow-dk:   #F5CC33;
+  --sun-yellow-dim:  rgba(255, 218, 71, 0.10);
+  --sun-yellow-bdr:  rgba(255, 218, 71, 0.30);
+  --sun-dark:        #f2f2f0;
+  --sun-muted:       #a3a3a3;
+  --sun-amber:       #ffd666;
+  --sun-bg:          #0e0e10;
+  --sun-surface:     #18181b;
+  --sun-coral:       #e08b6c;
+  --sun-coral-dim:   rgba(224, 139, 108, 0.14);
+  --sun-coral-bdr:   rgba(224, 139, 108, 0.32);
+  --sun-coral-text:  #eda98a;
+  --sun-wip:         #8b8f99;
+
+  /* Glass surfaces - dark mode: translucent dark over content, blurred */
+  --glass-panel-bg:     rgba(24, 24, 27, 0.55);
+  --glass-panel-border: rgba(255, 255, 255, 0.08);
+  --glass-nav-bg:       rgba(24, 24, 27, 0.70);
+  --glass-nav-border:   rgba(255, 255, 255, 0.08);
+  --glass-card-bg:      rgba(24, 24, 27, 0.50);
+  --glass-card-border:  rgba(255, 255, 255, 0.10);
+  --glass-modal-bg:     rgba(24, 24, 27, 0.80);
+  --glass-modal-border: rgba(255, 255, 255, 0.12);
+  --glass-scrim:        rgba(0, 0, 0, 0.55);
+
+  --glass-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, 0.20);
+  --glass-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.40), 0 2px 6px rgba(0, 0, 0, 0.25);
+  --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.50), 0 4px 12px rgba(0, 0, 0, 0.30);
+  --glass-glow-yellow: 0 0 0 1px var(--sun-yellow-bdr), 0 0 28px rgba(255, 218, 71, 0.18);
+
+  /* Course map (/map): night map, amber ink on dark paper */
+  --map-paper:      #1d1811;
+  --map-paper-edge: #3a2f20;
+  --map-ink:        #e0c283;
+  --map-ink-soft:   #a8894f;
+  --map-route:      #c9a45e;
+  --map-accent:     #FFDA47;
+  --map-on-accent:  #2b1d0e; /* text on the accent, both themes */
+
+  --shadcn-background: 0 0% 7%;
+  --shadcn-foreground: 0 0% 96%;
+  --shadcn-card: 0 0% 10%;
+  --shadcn-card-foreground: 0 0% 96%;
+  --shadcn-popover: 0 0% 10%;
+  --shadcn-popover-foreground: 0 0% 96%;
+  --shadcn-primary: 47 100% 64%;
+  --shadcn-primary-foreground: 0 0% 7%;
+  --shadcn-secondary: 0 0% 16%;
+  --shadcn-secondary-foreground: 0 0% 96%;
+  --shadcn-muted: 0 0% 16%;
+  --shadcn-muted-foreground: 0 0% 65%;
+  --shadcn-accent: 0 0% 16%;
+  --shadcn-accent-foreground: 0 0% 96%;
+  --shadcn-destructive: 0 70% 55%;
+  --shadcn-destructive-foreground: 0 0% 98%;
+  --shadcn-border: 0 0% 20%;
+  --shadcn-input: 0 0% 20%;
+  --shadcn-ring: 47 100% 64%;
+}
+
+@theme inline {
+  --color-sun-yellow:      var(--sun-yellow);
+  --color-sun-yellow-dk:   var(--sun-yellow-dk);
+  --color-sun-yellow-dim:  var(--sun-yellow-dim);
+  --color-sun-yellow-bdr:  var(--sun-yellow-bdr);
+  --color-sun-dark:        var(--sun-dark);
+  --color-sun-muted:       var(--sun-muted);
+  --color-sun-amber:       var(--sun-amber);
+  --color-sun-bg:          var(--sun-bg);
+  --color-sun-surface:     var(--sun-surface);
+  --color-sun-coral:       var(--sun-coral);
+  --color-sun-coral-dim:   var(--sun-coral-dim);
+  --color-sun-coral-bdr:   var(--sun-coral-bdr);
+  --color-sun-coral-text:  var(--sun-coral-text);
+  --color-sun-wip:         var(--sun-wip);
+
+  /* Glass surface tokens - per elevation: nav (header/sidebar), panel      */
+  /* (generic translucent block), card (content cards), modal (overlays)   */
+  --color-glass-panel-bg:     var(--glass-panel-bg);
+  --color-glass-panel-border: var(--glass-panel-border);
+  --color-glass-nav-bg:       var(--glass-nav-bg);
+  --color-glass-nav-border:   var(--glass-nav-border);
+  --color-glass-card-bg:      var(--glass-card-bg);
+  --color-glass-card-border:  var(--glass-card-border);
+  --color-glass-modal-bg:     var(--glass-modal-bg);
+  --color-glass-modal-border: var(--glass-modal-border);
+  --color-glass-scrim:        var(--glass-scrim);
+
+  /* Course map tokens (bg-map-paper, text-map-ink, border-map-ink-soft, ...) */
+  --color-map-paper:      var(--map-paper);
+  --color-map-paper-edge: var(--map-paper-edge);
+  --color-map-ink:        var(--map-ink);
+  --color-map-ink-soft:   var(--map-ink-soft);
+  --color-map-route:      var(--map-route);
+  --color-map-accent:     var(--map-accent);
+  --color-map-on-accent:  var(--map-on-accent);
+
+  /* shadow-glass-sm/md/lg + shadow-glass-glow utilities */
+  --shadow-glass-sm:   var(--glass-shadow-sm);
+  --shadow-glass-md:   var(--glass-shadow-md);
+  --shadow-glass-lg:   var(--glass-shadow-lg);
+  --shadow-glass-glow: var(--glass-glow-yellow);
+
+  /* blur-glass-sm/md/lg + backdrop-blur-glass-sm/md/lg utilities */
+  --blur-glass-sm: 0px;
+  --blur-glass-md: 0px;
+  --blur-glass-lg: 0px;
+
+  /* shadcn/ui tokens (bg-background, border-input, ring-ring, ...).        */
+  /* These were previously only declared as raw HSL custom properties with  */
+  /* no @theme mapping, so Tailwind v4 silently dropped every bg-background */
+  /* /border-input/ring-ring utility used in src/components/ui/*.tsx - they */
+  /* now resolve correctly, and pick up dark-mode pairs via --shadcn-*.     */
+  --color-background:             hsl(var(--shadcn-background));
+  --color-foreground:             hsl(var(--shadcn-foreground));
+  --color-card:                   hsl(var(--shadcn-card));
+  --color-card-foreground:        hsl(var(--shadcn-card-foreground));
+  --color-popover:                hsl(var(--shadcn-popover));
+  --color-popover-foreground:     hsl(var(--shadcn-popover-foreground));
+  --color-primary:                hsl(var(--shadcn-primary));
+  --color-primary-foreground:     hsl(var(--shadcn-primary-foreground));
+  --color-secondary:              hsl(var(--shadcn-secondary));
+  --color-secondary-foreground:   hsl(var(--shadcn-secondary-foreground));
+  --color-muted:                  hsl(var(--shadcn-muted));
+  --color-muted-foreground:       hsl(var(--shadcn-muted-foreground));
+  --color-accent:                 hsl(var(--shadcn-accent));
+  --color-accent-foreground:      hsl(var(--shadcn-accent-foreground));
+  --color-destructive:            hsl(var(--shadcn-destructive));
+  --color-destructive-foreground: hsl(var(--shadcn-destructive-foreground));
+  --color-border:                 hsl(var(--shadcn-border));
+  --color-input:                  hsl(var(--shadcn-input));
+  --color-ring:                   hsl(var(--shadcn-ring));
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+::selection {
+  background: rgba(255, 218, 71, 0.4);
+  color: #111111;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  background: var(--sun-bg);
+  color: var(--sun-dark);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+/* Prose / course content overrides - all values reference the runtime       */
+/* sun-* / glass-* tokens (see :root/.dark above) so prose stays theme-       */
+/* reactive instead of baking a static light-mode hex value at build time.   */
+.prose {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  --tw-prose-headings:      var(--sun-dark);
+  --tw-prose-body:          var(--sun-dark);
+  --tw-prose-lead:          var(--sun-muted);
+  --tw-prose-links:         var(--sun-amber);
+  --tw-prose-bold:          var(--sun-dark);
+  --tw-prose-counters:      var(--sun-muted);
+  --tw-prose-bullets:       var(--sun-yellow-bdr);
+  --tw-prose-hr:            var(--sun-yellow-bdr);
+  --tw-prose-quotes:        var(--sun-dark);
+  --tw-prose-quote-borders: var(--sun-yellow);
+  --tw-prose-captions:      var(--sun-muted);
+  --tw-prose-kbd:           var(--sun-dark);
+  --tw-prose-kbd-shadows:   var(--glass-card-border);
+  --tw-prose-code:          var(--sun-amber);
+  --tw-prose-pre-bg:        var(--sun-surface);
+  --tw-prose-pre-code:      var(--sun-dark);
+  --tw-prose-th-borders:    var(--sun-yellow-bdr);
+  --tw-prose-td-borders:    var(--glass-card-border);
+}
+
+.prose h1 {
+  color: var(--sun-amber);
+  font-size: clamp(2rem, 3vw, 2.45rem);
+  line-height: 1.12;
+  letter-spacing: 0;
+  font-weight: 750;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.12em;
+  text-decoration-color: var(--sun-amber);
+}
+
+/* Anchor jumps (TOC, search results) land below the sticky audience bar */
+.prose :is(h1, h2, h3, h4, h5, h6) {
+  scroll-margin-top: 4rem;
+}
+
+.prose h2 {
+  border-bottom: 1px solid var(--sun-yellow-bdr);
+  color: var(--sun-amber);
+  font-size: clamp(1.45rem, 2vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-weight: 750;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.36rem;
+}
+
+.prose h3 {
+  color: var(--sun-amber);
+  font-size: 1.12rem;
+  line-height: 1.35;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+.prose p,
+.prose li {
+  color: var(--sun-dark);
+}
+
+.prose ul > li::marker,
+.prose ol > li::marker {
+  color: var(--sun-yellow-dk);
+}
+
+.prose code:not(pre code) {
+  background: var(--sun-yellow-dim);
+  color: var(--sun-amber);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  font-size: 0.82em;
+}
+
+/* The typography plugin wraps inline code in literal backticks; the pill above replaces them */
+.prose code:not(pre code)::before,
+.prose code:not(pre code)::after {
+  content: none;
+}
+
+.prose pre {
+  /* background comes from --tw-prose-pre-bg above (solid, theme-matched -   */
+  /* code text needs a reliable backdrop, so it stays solid rather than      */
+  /* translucent, per the contrast risk called out in GLASS-UI-REDESIGN.md   */
+  border: 1px solid var(--glass-card-border);
+  border-left: 2px solid var(--sun-yellow);
+  border-radius: 0 6px 6px 0;
+  box-shadow: var(--glass-shadow-sm);
+}
+
+.prose table {
+  background: var(--glass-card-bg);
+  border: 1px solid var(--glass-card-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow-sm);
+}
+
+.prose thead {
+  background: var(--glass-panel-bg);
+}
+
+/* Audience toggle visibility */
+body[data-audience="analyst"] .audience-beginner { display: none; }
+body[data-audience="beginner"]  .audience-analyst { display: none; }
+
+.prose .audience-beginner {
+  border-left: 2.5px solid #3b82f6;
+  padding-left: 1.1rem;
+  margin-left: 0;
+  margin-bottom: 1rem;
+}
+
+.prose .audience-analyst {
+  border-left: 2.5px solid #FFDA47;
+  padding-left: 1.1rem;
+  margin-left: 0;
+  margin-bottom: 1rem;
+}
+
+/* shadcn/ui radius - plain runtime var; the default rounded-* scale (used  */
+/* throughout src/components/ui/*.tsx) is Tailwind's built-in scale, not    */
+/* derived from this value. Kept for components that reference it directly.*/
+:root {
+  --radius: 0.5rem;
+}
+
+/* Course map landmarks (CourseMap.tsx): SVG links with hover, focus and selected states */
+.map-landmark {
+  cursor: pointer;
+  outline: none;
+}
+.map-landmark .lm-body {
+  fill: var(--map-paper);
+  transition: fill 150ms;
+}
+.map-landmark:hover .lm-body {
+  fill: var(--map-paper-edge);
+}
+.map-landmark[aria-current="true"] .lm-body {
+  fill: var(--map-accent);
+}
+.map-landmark .lm-focus {
+  stroke: transparent;
+}
+.map-landmark:focus-visible .lm-focus {
+  stroke: var(--map-accent);
+}

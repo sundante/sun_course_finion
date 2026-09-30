@@ -1,0 +1,167 @@
+# Dividend Payout & FCF Coverage
+
+The payout ratio shows what share of earnings a company pays out as dividends, and FCF coverage shows whether those dividends are actually funded by free cash flow - together they measure how safe and how growable a dividend is.
+
+```objectives
+time: 40 min
+outcomes:
+  - Calculate the earnings payout ratio, FCF payout ratio and FCF dividend coverage
+  - Include buybacks to measure total shareholder yield
+  - Link payout, ROE and growth with the sustainable growth formula
+  - Set sector-appropriate payout limits and spot a dividend at risk of being cut
+prerequisites:
+  - "[Free Cash Flow Yield](04-FCF-Yield.mdx)"
+```
+
+## Why It Matters
+
+<div class="audience-beginner" markdown="1">
+
+A dividend is only as reliable as the cash behind it. If a company pays out more than it earns in cash, it has to borrow or sell things to keep paying - and sooner or later the dividend gets cut, usually along with the share price. A company paying out half of its cash has room to keep raising the dividend even in a bad year.
+
+</div>
+
+<div class="audience-analyst" markdown="1">
+
+Dividend policy is a capital allocation decision. Retained earnings fund growth at the incremental ROE; distributed earnings do not. A sustainable payout balances $$g = \text{ROE} \times (1 - \text{payout})$$ against the opportunity set. Because boards are reluctant to cut dividends (Lintner, 1956), a payout ratio that creeps up while cash flow stalls is a leading indicator of either a cut or a balance sheet being run down.
+
+</div>
+
+## Formulas
+
+$$
+\text{Payout ratio (earnings)} = \frac{\text{Dividends per share}}{\text{EPS}} = \frac{\text{Total dividends}}{\text{Net income}}
+$$
+
+$$
+\text{FCF payout ratio} = \frac{\text{Total dividends}}{\text{Free cash flow}}
+$$
+
+$$
+\text{FCF dividend coverage} = \frac{\text{Free cash flow}}{\text{Total dividends}}
+$$
+
+$$
+\text{Shareholder yield} = \frac{\text{Dividends} + \text{Net buybacks}}{\text{Market cap}} \quad (\text{optionally + net debt paydown})
+$$
+
+**Sustainable growth rate** (with no new equity or change in leverage):
+
+$$
+g = \text{ROE} \times (1 - \text{Payout ratio})
+$$
+
+A company with ROE 20% paying out 60% can grow earnings about 8% a year from retained earnings alone.
+
+## Worked Example
+
+| Item | Value |
+|---|---|
+| Net income | 1,000 |
+| Free cash flow | 850 |
+| Dividends paid | 600 |
+| Net buybacks | 150 |
+| Market cap | 20,000 |
+| ROE | 18% |
+
+- Earnings payout = 600 / 1,000 = **60%**
+- FCF payout = 600 / 850 = **70.6%**; coverage = **1.42x**
+- Shareholder yield = (600 + 150) / 20,000 = **3.75%**
+- Sustainable growth = 18% × (1 - 0.60) = **7.2%**
+
+Dividends plus buybacks (750) are below FCF (850), so total distributions are funded. The dividend is safe today but has less headroom than the 60% earnings payout suggests.
+
+## Benchmarks
+
+| Company type | Healthy earnings payout | Healthy FCF payout |
+|---|---|---|
+| Growth companies | 0-25% | 0-30% |
+| Dividend growers (Aristocrat-style) | 30-60% | Under 60% |
+| Mature consumer staples | 50-75% | 60-80% |
+| Utilities | 60-80% | Often above 100% - funded by regulated debt; judge on the rate base |
+| REITs | 70-90% of FFO (US mandate: 90% of taxable income) | Judge on AFFO payout |
+| Indian PSUs (government-owned) | 30-60%+, sometimes set by government guidelines | Check capex needs |
+
+The dividend framework in this course uses **FCF payout below 60%** as its default safety line (see [Dividend Safety Checklist](../../08-Dividend-Investing/Notes/02-Dividend-Safety-Checklist.mdx)).
+
+**India-specific notes.** Since April 2020, dividends in India are taxed in the hands of shareholders at their slab rate (the old Dividend Distribution Tax was abolished). Many large Indian companies therefore prefer buybacks; buyback tax rules also changed in October 2024, when buyback proceeds became taxable as dividends in shareholders' hands. Check current rules before comparing dividends and buybacks.
+
+## Red Flags
+
+- **FCF payout above 100% for two or more years** outside regulated utilities and REITs.
+- **Dividends funded by new debt** - net debt rising while the dividend grows.
+- **Earnings payout rising steadily** because EPS is stagnant while the dividend keeps growing.
+- **Very high yield (well above sector)** - the market is usually pricing a cut. A high yield caused by a falling price is a warning, not a bargain.
+- **Special dividends counted as regular** in yield screens.
+- **Holding-company dividends funded by subsidiaries' debt** (common in some Indian business groups).
+
+## How It Interacts With Other Metrics
+
+| Metric | Interaction |
+|---|---|
+| [FCF yield](04-FCF-Yield.mdx) | Dividend yield can only exceed FCF yield temporarily. |
+| [Leverage](05-Leverage-Ratios.mdx) | Rising leverage alongside a rising dividend means the dividend is borrowed. |
+| [ROIC vs WACC](03-ROIC-vs-WACC.mdx) | High-ROIC companies should retain more if they have reinvestment opportunities; low-ROIC ones should pay out more. |
+| [Revenue vs EPS CAGR](08-Revenue-vs-EPS-CAGR.mdx) | Dividend growth can exceed EPS growth only while the payout ratio rises - which has a ceiling. |
+
+## Case Studies
+
+**US - General Electric's dividend cuts.** GE paid a dividend for over a century. By 2017, its industrial free cash flow no longer covered the roughly 8 billion dollar annual dividend, and the company cut it by half in November 2017, then to one cent a quarter in 2018. The warning signs - weak FCF conversion, rising debt, and a payout well above 100% of FCF - were visible in the filings well before the cuts.
+
+**US - Johnson & Johnson.** J&J has raised its dividend every year for more than 60 years with a typical FCF payout of around 50-70%. Its consistency comes from high-margin, diversified cash flows and a strong balance sheet (one of very few AAA-rated US companies).
+
+**India - Coal India.** Coal India, a government-owned company, has often paid a very high share of its profits as dividends, partly to meet government revenue needs. In some years its dividend yield exceeded 8-10%. High payouts can coexist with investment needs only while cash flows stay strong - an analyst must model both the government's appetite for dividends and the company's capex plan.
+
+> Figures are approximate and for teaching.
+
+## Check Yourself
+
+```quiz
+- q: "EPS is 5.0, DPS is 3.0, FCF per share is 3.6. What are the earnings payout and FCF payout?"
+  options: ["60% and 83%", "83% and 60%", "60% and 120%", "40% and 17%"]
+  answer: 1
+  explain: "Earnings payout = 3.0 / 5.0 = 60%. FCF payout = 3.0 / 3.6 = 83%."
+- q: "ROE is 15% and the payout ratio is 40%. What is the sustainable growth rate?"
+  options: ["6%", "9%", "15%", "25%"]
+  answer: 2
+  explain: "g = 15% × (1 - 0.40) = 9%."
+- q: "A stock's yield rose from 3% to 9% in a year because its price fell by two-thirds. What should you check first?"
+  options: ["Nothing - buy the higher yield", "Whether FCF still covers the dividend and whether a cut is being priced in", "Whether the stock is in an index", "The CEO's salary"]
+  answer: 2
+  explain: "A yield that rises because the price collapsed often signals that the market expects a dividend cut."
+- q: "Why can dividend growth not exceed EPS growth forever?"
+  answer: "Because the payout ratio would rise every year and eventually exceed 100% of earnings (and of FCF). Over the long run, dividends can only grow as fast as the earnings and cash flow that fund them."
+```
+
+## Exercises
+
+```exercise
+- title: Coverage over a cycle
+  task: |
+    For one dividend-paying company in each market, collect 10 years of dividends paid, FCF and net debt. Chart FCF payout and net debt. Did the company ever pay dividends it did not earn in cash? How was the gap funded?
+- title: Dividend growth ceiling
+  task: |
+    A company earns EPS of 10 and pays 4 (40% payout). EPS will grow 5% a year. Management promises 10% annual dividend growth. In how many years does the payout ratio exceed 75%?
+  hints:
+    - "Payout in year n = 0.40 × (1.10 / 1.05)^n."
+  solution: |
+    Solve 0.40 × (1.10 / 1.05)^n > 0.75: (1.0476)^n > 1.875, n > ln 1.875 / ln 1.0476 = 0.6286 / 0.0465 = **13.5 years**. After about 14 years the promise breaks down, and much earlier if earnings dip.
+```
+
+## Study Notes
+
+- **Earnings payout** = dividends / net income; **FCF payout** = dividends / FCF; **coverage** = FCF / dividends.
+- Default safety line in this course: **FCF payout under 60%**.
+- **Shareholder yield** adds buybacks (and optionally debt paydown).
+- **g = ROE × (1 - payout)**: retention funds growth.
+- A yield that rises because the price fell is often a warning.
+
+## References
+
+- Lintner, "Distribution of Incomes of Corporations Among Dividends, Retained Earnings, and Taxes," *American Economic Review* (1956)
+- Miller & Modigliani, "Dividend Policy, Growth, and the Valuation of Shares," *Journal of Business* (1961)
+- Faber, *Shareholder Yield: A Better Approach to Dividend Investing* (Cambria, 2013)
+- General Electric Company, Form 8-K announcements of dividend reductions (November 2017, December 2018)
+- Income Tax Department of India, Finance Act 2020 (abolition of DDT) and Finance (No. 2) Act 2024 (buyback taxation)
+
+*Last reviewed: 2026-09*
